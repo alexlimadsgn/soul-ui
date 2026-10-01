@@ -751,6 +751,19 @@ body.wn-active #poststuff .inside {
     padding: 16px !important;
 }
 
+/* Título do post: a área do permalink só ocupa espaço quando tem conteúdo */
+body.wn-active #poststuff #titlediv .inside {
+    padding: 0 !important;
+}
+
+body.wn-active #titlediv #edit-slug-box {
+    padding: 8px 0 0 !important;
+}
+
+body.wn-active #titlediv #edit-slug-box:not(:has(*)) {
+    display: none !important;
+}
+
 /* ── Publish Metabox (#submitdiv / .submitbox) ──────────────────────────── */
 
 body.wn-active #submitdiv .inside,
