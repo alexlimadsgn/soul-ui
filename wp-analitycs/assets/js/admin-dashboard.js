@@ -12,6 +12,10 @@
         var views = chartData.map(function(d) { return d.views; });
         var visitors = chartData.map(function(d) { return d.visitors; });
 
+        // Evita gráfico duplicado ao voltar para a tela via PJAX
+        var existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+
         var ctx = canvas.getContext('2d');
 
         new Chart(ctx, {
@@ -97,18 +101,23 @@
         return true;
     }
 
+    // Chart.js pode ainda estar carregando (CDN) quando a tela é aberta via PJAX
     function waitForChart(retries) {
-        if (retries <= 0) return;
-        if (!initChart()) {
-            requestAnimationFrame(function() {
-                waitForChart(retries - 1);
-            });
-        }
+        if (initChart() || retries <= 0) return;
+        setTimeout(function() {
+            waitForChart(retries - 1);
+        }, 100);
     }
 
-    window.addEventListener('load', function() {
-        if (!initChart()) {
-            waitForChart(60);
-        }
+    // Carregamento normal da página
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { waitForChart(50); });
+    } else {
+        waitForChart(50);
+    }
+
+    // Navegação PJAX do Soul UI (o evento "load" não dispara de novo)
+    document.addEventListener('wp-pjax-loaded', function() {
+        waitForChart(50);
     });
 })(jQuery);
