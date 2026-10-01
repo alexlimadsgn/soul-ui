@@ -35,7 +35,7 @@ class WP_Analytics_Admin {
             'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js',
             [],
             '4.4.1',
-            true
+            false // no <head>, para o PJAX do Soul UI conseguir carregar
         );
 
         wp_enqueue_style(
@@ -50,7 +50,7 @@ class WP_Analytics_Admin {
             WP_ANALYTICS_PLUGIN_URL . 'assets/js/admin-dashboard.js',
             ['jquery', 'chartjs'],
             WP_ANALYTICS_VERSION,
-            true
+            false // no <head>, para o PJAX do Soul UI conseguir carregar
         );
     }
 
