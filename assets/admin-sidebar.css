@@ -1,0 +1,531 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WP Notion UI — Sidebar  v2.0
+   Visual reference: wp-dashboard-clone React app
+   Palette: #1d2327 bg, #2c3338 hover, #2271b1 active, #a7aaad text
+   Zero WP class conflicts — all selectors scoped to #wn-sidebar / body.wn-active
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Usando variáveis globais de notion-hijacker.css */
+
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+
+.wn-active #wpcontent {
+    margin-left: var(--wn-w) !important;
+    min-width: 0;
+    overflow: visible !important;
+    isolation: isolate;
+}
+
+/* Transição de margem ativada somente após a inicialização completa (evita piscadas no carregamento) */
+html.wn-ready .wn-active #wpcontent {
+    transition: margin-left var(--wn-slide);
+}
+
+.wn-active.admin-bar #wn-sidebar {
+    top: 0 !important;
+}
+
+@media screen and (max-width: 782px) {
+    .wn-active.admin-bar #wn-sidebar {
+        top: 0 !important;
+    }
+}
+
+/* ── Shell ───────────────────────────────────────────────────────────────── */
+
+/* Fundo sólido atrás da sidebar: mesma cor e mesma transição de largura.
+   Elimina a "piscada" se a sidebar ainda não pintou num frame da animação. */
+#wn-sidebar-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--wn-w, 200px) !important;
+    background: var(--wn-bg);
+    z-index: 9998;
+    pointer-events: none;
+    will-change: width;
+}
+
+.wn-collapsed #wn-sidebar-bg {
+    width: var(--wn-w, 56px) !important;
+}
+
+#wn-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--wn-w, 200px) !important;
+    background: var(--wn-bg);
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    /* allow flyout submenus to escape */
+    z-index: 9999;
+    will-change: left, width;
+    font-family: var(--wn-font);
+    font-size: 13px;
+    color: var(--wn-text);
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Transições ativadas SOMENTE após o carregamento completo (evita piscadas/animações indesejadas no load) */
+html.wn-ready #wn-sidebar-bg,
+html.wn-ready #wn-sidebar {
+    transition: width var(--wn-slide);
+}
+
+/* Scrollable nav area inside */
+#wn-sidebar .wn-nav-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 12px 8px;
+}
+
+#wn-sidebar .wn-nav-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+#wn-sidebar .wn-nav-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#wn-sidebar .wn-nav-scroll::-webkit-scrollbar-thumb {
+    background: var(--wn-scroll);
+    border-radius: 10px;
+}
+
+#wn-sidebar .wn-nav-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Collapsed ───────────────────────────────────────────────────────────── */
+
+.wn-collapsed #wn-sidebar {
+    width: var(--wn-w-sm);
+}
+
+.wn-collapsed .wn-item-label,
+.wn-collapsed .wn-chevron,
+.wn-collapsed .wn-group-label,
+.wn-collapsed .wn-user-info,
+.wn-collapsed .wn-children,
+.wn-collapsed .wn-site-name,
+.wn-collapsed .wn-collapse-btn {
+    opacity: 0;
+    width: 0;
+    display: none !important;
+}
+
+.wn-collapsed .wn-nav-scroll {
+    padding: 12px 0;
+    /* Remove horizontal padding when collapsed */
+}
+
+.wn-collapsed .wn-item {
+    justify-content: center;
+    padding: 0;
+    gap: 0;
+}
+
+.wn-collapsed .wn-site-header,
+.wn-collapsed .wn-user-row {
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+}
+
+.wn-collapsed .wn-site-icon,
+.wn-collapsed .wn-avatar {
+    margin: 0 auto;
+}
+
+/* ── Site header ─────────────────────────────────────────────────────────── */
+
+.wn-site-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    height: 48px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--wn-border);
+    transition: padding var(--wn-slide), justify-content var(--wn-slide);
+}
+
+.wn-site-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wn-text-hi);
+}
+
+.wn-site-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.wn-site-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--wn-text-hi);
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: -0.02em;
+    transition: opacity var(--wn-slide), width var(--wn-slide);
+}
+
+/* ── Group labels ────────────────────────────────────────────────────────── */
+
+.wn-group-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--wn-label) !important;
+    padding: 16px 10px 6px;
+    transition: opacity var(--wn-slide), width var(--wn-slide);
+}
+
+.wn-group-label:first-child {
+    padding-top: 4px;
+}
+
+/* ── Items ───────────────────────────────────────────────────────────────── */
+
+.wn-group {
+    position: relative;
+}
+
+.wn-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 4px;
+    color: var(--wn-text);
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background var(--wn-ease), color var(--wn-ease);
+    position: relative;
+}
+
+.wn-item:hover {
+    background: var(--wn-hover);
+    color: var(--wn-text-hi) !important;
+    text-decoration: none !important;
+}
+
+.wn-item.is-active {
+    background: var(--wn-active);
+    color: var(--wn-text-act) !important;
+    font-weight: 500;
+}
+
+.wn-item-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wn-icon-color, var(--wn-text));
+    transition: color var(--wn-ease);
+}
+
+.wn-item:hover .wn-item-icon {
+    color: var(--wn-text-hi);
+}
+
+.wn-item.is-active .wn-item-icon {
+    color: var(--wn-text-act);
+}
+
+.wn-item-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* Evita o flash de texto do lucide e reserva espaço de layout para evitar oscilações */
+.wn-item-icon i[data-lucide] {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    visibility: hidden;
+}
+
+.wn-item-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity var(--wn-slide), width var(--wn-slide);
+    white-space: nowrap;
+}
+
+.wn-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    background: #eb5757;
+    color: #ffffff !important;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 10px;
+    padding: 0 4px;
+    flex-shrink: 0;
+    margin-left: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wn-item.is-active .wn-badge {
+    background: #ffffff;
+    color: var(--wn-active) !important;
+    box-shadow: none;
+}
+
+.wp-person a:focus .gravatar,
+a:focus,
+a:focus .media-icon img,
+a:focus .plugin-icon {
+    color: var(--wn-text);
+}
+
+
+
+/* ── Flyout submenu ──────────────────────────────────────────────────────── */
+
+.wn-flyout {
+    position: fixed;
+    /* Escape scroll clipping */
+    left: var(--wn-w);
+    top: var(--wn-flyout-top, -9999px);
+    z-index: 10000;
+    background: var(--wn-bg);
+    min-width: 200px;
+    max-width: calc(100vw - 70px);
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--wn-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.2);
+
+    /* Animation and hidden state */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-2px) scale(0.98);
+    transition:
+        visibility 0.15s ease,
+        opacity 0.15s ease,
+        transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    transform-origin: left top;
+}
+
+.wn-flyout::-webkit-scrollbar {
+    width: 3px;
+}
+
+.wn-flyout::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.wn-flyout::-webkit-scrollbar-thumb {
+    background: var(--wn-scroll);
+    border-radius: 10px;
+}
+
+.wn-flyout::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Posicionamento flutuante quando a sidebar está colapsada */
+body.wn-active.wn-collapsed .wn-flyout {
+    left: calc(var(--wn-w) + 2px) !important;
+}
+
+/* Estado ativo do flyout flutuante (JS) — ambos os estados */
+body.wn-active .wn-flyout.wn-flyout-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+.wn-flyout a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--wn-text);
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background var(--wn-ease), color var(--wn-ease);
+    margin-bottom: 2px;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.wn-child-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wn-flyout a:last-child {
+    margin-bottom: 0;
+}
+
+.wn-flyout a:hover {
+    background: var(--wn-hover);
+    color: var(--wn-text-hi) !important;
+    text-decoration: none !important;
+}
+
+.wn-flyout a.is-active {
+    background: var(--wn-hover);
+    color: var(--wn-text-hi) !important;
+    font-weight: 500;
+}
+
+/* Ponte invisível: alarga a área de hover para cobrir o gap entre sidebar e flyout */
+.wn-flyout::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+    z-index: 0;
+    pointer-events: auto;
+    background: transparent;
+}
+
+/* ── Inline children (expanded accordion, when sidebar is open) ───────────── */
+
+.wn-children {
+    padding-left: 30px;
+}
+
+.wn-children[hidden] {
+    display: none;
+}
+
+.wn-child-item {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 4px;
+    border-left: 1px solid transparent;
+    /* evita deslocamento visual */
+    color: var(--wn-text);
+    text-decoration: none !important;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background var(--wn-ease), color var(--wn-ease), border-color var(--wn-ease);
+    margin-bottom: 2px;
+    box-sizing: border-box;
+}
+
+.wn-child-item:hover {
+    background: var(--wn-hover);
+    color: var(--wn-text-hi) !important;
+    text-decoration: none !important;
+}
+
+.wn-child-item.is-active {
+    background: var(--wn-hover);
+    color: var(--wn-text-hi) !important;
+    font-weight: 500;
+    border-left-color: var(--wn-active);
+}
+
+/* ── Focus & Active ──────────────────────────────────────────────────────── */
+
+.wn-item,
+.wn-child-item {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.wn-item:active,
+.wn-child-item:active {
+    background: var(--wn-hover) !important;
+    border-radius: 4px !important;
+}
+
+/* ── Mobile / Responsive ─────────────────────────────────────────────────── */
+
+.wn-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease;
+}
+
+@media screen and (max-width: 960px) {
+    #wn-sidebar {
+        transform: translateX(-100%);
+        box-shadow: none;
+        z-index: 10001;
+        /* Above everything */
+    }
+
+    #wn-sidebar-bg {
+        display: none;
+    }
+
+    body.wn-mobile-open #wn-sidebar {
+        transform: translateX(0);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    }
+
+    body.wn-mobile-open .wn-overlay {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .wn-active #wpcontent {
+        margin-left: 0 !important;
+    }
+
+    .wn-active #wn-adminbar {
+        left: 0 !important;
+    }
+
+    #wn-adminbar-bg {
+        left: 0 !important;
+    }
+}

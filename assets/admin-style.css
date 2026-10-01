@@ -1,0 +1,496 @@
+/* ============================================================
+   Gerir Acessos — Admin Styles
+   ============================================================ */
+
+/* -- Wrapper global -- */
+.ga-wrap {
+    max-width: 1600px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ga-wrap h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 0;
+}
+
+/* -- Container principal -- */
+.ga-container {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+/* ============================================================
+   Seletor de utilizador
+   ============================================================ */
+.ga-user-selector {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f1;
+    background: #f6f7f7;
+}
+
+.ga-user-selector-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.ga-user-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ga-user-field label {
+    font-weight: 600;
+    font-size: 13px;
+    color: #3c434a;
+    white-space: nowrap;
+}
+
+.ga-user-field select {
+    min-width: 320px;
+    height: 36px;
+    line-height: 34px;
+}
+
+.ga-user-field .button-primary {
+    height: 36px;
+    line-height: 34px;
+    padding: 0 16px;
+}
+
+/* Badge do utilizador selecionado */
+.ga-user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #2271b1;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: .3px;
+}
+
+.ga-user-badge .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    line-height: 1.1;
+}
+
+/* ============================================================
+   Estado vazio
+   ============================================================ */
+.ga-empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: #8c8f94;
+}
+
+.ga-empty-state .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 12px;
+    color: #c3c4c7;
+}
+
+.ga-empty-state p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ============================================================
+   Toolbar (barra de ações)
+   ============================================================ */
+.ga-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid #f0f0f1;
+    background: #fff;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ga-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ga-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.ga-badge {
+    display: inline-block;
+    background: #2271b1;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 10px;
+    letter-spacing: .2px;
+    min-width: 24px;
+    text-align: center;
+}
+
+.ga-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ga-btn-text {
+    background: none;
+    border: none;
+    color: #2271b1;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 2px;
+    text-decoration: none;
+    transition: color .15s;
+}
+
+.ga-btn-text:hover {
+    color: #135e96;
+    text-decoration: underline;
+}
+
+.ga-divider {
+    color: #c3c4c7;
+    font-size: 12px;
+    user-select: none;
+}
+
+/* ============================================================
+   Grupos de menus
+   ============================================================ */
+.ga-groups {
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* -- Grupo individual -- */
+.ga-group {
+    border: 1px solid #e2e4e7;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.ga-group:hover {
+    border-color: #c3c4c7;
+}
+
+/* Grupo com itens selecionados */
+.ga-group.ga-group--selected {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* -- Cabeçalho do grupo (menu pai) -- */
+.ga-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #f6f7f7;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+    min-height: 44px;
+}
+
+.ga-group-header:hover {
+    background: #f0f0f1;
+}
+
+/* Grupo aberto: cabeçalho ligeiramente diferente */
+.ga-group.ga-group--open>.ga-group-header {
+    background: #f0f6fc;
+    border-bottom: 1px solid #d9eaf7;
+}
+
+.ga-parent-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 0;
+}
+
+.ga-parent-label input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.ga-parent-icon {
+    display: flex;
+    align-items: center;
+    color: #646970;
+    flex-shrink: 0;
+}
+
+.ga-parent-icon .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1;
+}
+
+.ga-parent-icon img {
+    border-radius: 2px;
+    opacity: .7;
+    filter: grayscale(30%);
+}
+
+.ga-parent-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* -- Botão Toggle -- */
+.ga-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid #c3c4c7;
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #50575e;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+    flex-shrink: 0;
+}
+
+.ga-toggle-btn:hover {
+    background: #fff;
+    border-color: #8c8f94;
+    color: #1d2327;
+}
+
+.ga-toggle-icon {
+    display: inline-block;
+    transition: transform .2s ease;
+    font-size: 10px;
+    line-height: 1;
+}
+
+.ga-group.ga-group--open .ga-toggle-icon {
+    transform: rotate(90deg);
+}
+
+.ga-submenu-count {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* -- Filhos (submenus) -- */
+.ga-group-children {
+    display: none;
+    padding: 8px 14px 12px 14px;
+    background: #fff;
+    border-top: 1px solid #f0f0f1;
+    display: none;
+    flex-wrap: wrap;
+    gap: 4px 0;
+}
+
+.ga-group.ga-group--open .ga-group-children {
+    display: flex;
+}
+
+.ga-child-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 3px;
+    width: calc(33.333% - 4px);
+    min-width: 200px;
+    transition: background .12s;
+}
+
+.ga-child-label:hover {
+    background: #f6f7f7;
+}
+
+.ga-child-label input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.ga-child-title {
+    font-size: 12px;
+    color: #3c434a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Indica que é um submenu */
+.ga-child-label::before {
+    content: "↳";
+    font-size: 11px;
+    color: #c3c4c7;
+    flex-shrink: 0;
+    margin-right: -4px;
+}
+
+/* ============================================================
+   Footer / Ações de salvar
+   ============================================================ */
+.ga-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px 24px;
+    border-top: 1px solid #f0f0f1;
+    background: #f6f7f7;
+    margin-top: 8px;
+}
+
+.ga-save-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 38px !important;
+    line-height: 1 !important;
+    padding: 0 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.ga-save-btn .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ga-save-btn .dashicons:before {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================
+   Mensagem de feedback
+   ============================================================ */
+.ga-message {
+    padding: 10px 14px;
+    border-radius: 3px;
+    font-size: 13px;
+    display: none;
+    flex: 1;
+}
+
+.ga-message.success {
+    display: block;
+    background: #ecf7ed;
+    border-left: 4px solid #00a32a;
+    color: #1d2327;
+}
+
+.ga-message.error {
+    display: block;
+    background: #fbeaea;
+    border-left: 4px solid #d63638;
+    color: #1d2327;
+}
+
+/* ============================================================
+   Loading
+   ============================================================ */
+.ga-loading {
+    position: relative;
+    opacity: .7;
+    pointer-events: none;
+}
+
+.ga-loading:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, .5);
+    z-index: 10;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   Responsivo
+   ============================================================ */
+@media (max-width: 782px) {
+    .ga-child-label {
+        width: 100%;
+    }
+
+    .ga-user-field select {
+        min-width: 200px;
+    }
+
+    .ga-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ============================================================
+   Acessibilidade / Focus Rings
+   Remover borda de foco (box-shadow/outline) ao clicar com o mouse 
+   em locais que não sejam inputs.
+   ============================================================ */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+summary:focus:not(:focus-visible),
+tr:focus:not(:focus-visible),
+th:focus:not(:focus-visible),
+td:focus:not(:focus-visible),
+div:focus:not(:focus-visible),
+span:focus:not(:focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
+}

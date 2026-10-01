@@ -1,0 +1,782 @@
+/**
+ * Simple Cookie Consent - Admin Styles
+ * Refinado para visual 'Limpo' e Premium
+ */
+
+/* Variáveis de Design */
+:root {
+    --scc-main-bg: #f6f7f7;
+    --scc-card-bg: #ffffff;
+    --scc-border-color: #dcdcde;
+    --scc-accent: #2271b1;
+    --scc-text-main: #1d2327;
+    --scc-text-muted: #646970;
+    --scc-radius-lg: 12px;
+    --scc-radius-md: 8px;
+    --scc-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.04);
+    --scc-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.wrap.scc-admin-page {
+    margin: 20px 20px 0 0;
+    max-width: 1280px;
+}
+
+.scc-admin-page h1 {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--scc-text-main);
+    margin-bottom: 25px !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scc-admin-page h1 .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    color: var(--scc-accent);
+}
+
+/* Layout Principal no padrão WordPress Poststuff */
+.scc-poststuff {
+    padding-top: 10px;
+}
+
+/* Reset Core WP poststuff styles to avoid conflict with CSS Grid */
+.scc-poststuff #post-body {
+    margin-right: 0 !important;
+}
+
+.scc-poststuff #post-body-content {
+    float: none !important;
+    width: auto !important;
+}
+
+.scc-poststuff #postbox-container-1 {
+    float: none !important;
+    margin-right: 0 !important;
+    width: auto !important;
+}
+
+@media (min-width: 851px) {
+    .scc-poststuff .metabox-holder.columns-2 {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .scc-postbox-sidebar {
+        position: sticky;
+        top: 50px;
+    }
+}
+
+@media (max-width: 850px) {
+    .scc-poststuff .metabox-holder.columns-2 {
+        display: block;
+    }
+
+    .scc-postbox-sidebar {
+        margin-top: 20px;
+    }
+}
+
+/* Tabelas e Formulários responsivos dentro das seções */
+@media (max-width: 782px) {
+    .scc-admin-sections {
+        padding: 15px;
+    }
+
+    .scc-admin-page .form-table th {
+        width: 100%;
+        display: block;
+        padding: 10px 0 5px 0;
+    }
+
+    .scc-admin-page .form-table td {
+        display: block;
+        padding-bottom: 15px;
+    }
+}
+
+
+/* Botão de Simulação (Olho) */
+.scc-btn-preview-trigger {
+    margin-left: auto !important;
+    align-self: center;
+    background: #ffffff;
+    border: 1px solid var(--scc-border-color);
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--scc-text-muted);
+    transition: all 0.2s ease;
+}
+
+.scc-btn-preview-trigger:hover {
+    color: var(--scc-accent);
+    border-color: var(--scc-accent);
+    background: rgba(34, 113, 177, 0.05);
+}
+
+.scc-btn-preview-trigger .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+}
+
+/* Ocultação de opções nas configurações sem estilo inline */
+.scc-option-hidden {
+    display: none !important;
+}
+
+#poststuff .scc-admin-section,
+.scc-admin-section {
+    display: none !important;
+    background: #ffffff !important;
+}
+
+#poststuff .scc-admin-section.active,
+.scc-admin-section.active {
+    display: block !important;
+}
+
+/* Tabelas */
+.scc-admin-page .form-table {
+    margin: 0;
+    border: none;
+    background: transparent !important;
+}
+
+.scc-admin-page .form-table th {
+    width: 220px;
+    padding: 20px 20px 20px 0;
+    font-size: 14px;
+    color: var(--scc-text-main);
+    border: none;
+    background: transparent !important;
+}
+
+.scc-admin-page .form-table td {
+    padding: 15px 0;
+    border: none;
+    background: transparent !important;
+}
+
+/* Switches de Pré-visualização */
+.scc-preview-switch {
+    width: 34px;
+    height: 18px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    position: relative;
+    cursor: default;
+}
+
+.scc-preview-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.scc-preview-switch.active {
+    background: var(--p-primary);
+}
+
+.scc-preview-switch.active::after {
+    left: 18px;
+    /* 34px total - 14px knob - 2px margin */
+}
+
+/* Inputs Refinados */
+.scc-admin-page input[type="text"],
+.scc-admin-page input[type="number"],
+.scc-admin-page select,
+.scc-admin-page textarea {
+    border: 1px solid #d2d4d7;
+    border-radius: 6px !important;
+    /* Cantos arredondados modernos */
+    padding: 6px 12px;
+    /* Mais compacto, de acordo com o admin */
+    font-size: 13px;
+    /* Fonte menor e elegante */
+    width: 100%;
+    max-width: 460px;
+    transition: all 0.15s ease-in-out;
+    background: #ffffff !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.scc-admin-page input:focus,
+.scc-admin-page textarea:focus,
+.scc-admin-page select:focus {
+    border-color: var(--scc-accent, #2271b1);
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.15) !important;
+}
+
+/* Cabeçalho Moderno da Página */
+.scc-header {
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.scc-header-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.scc-header-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #2271b1 0%, #135e96 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(34, 113, 177, 0.2);
+}
+
+.scc-header-icon .dashicons {
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    color: #ffffff;
+}
+
+.scc-header h1 {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: var(--scc-text-main) !important;
+    margin: 0 0 4px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.scc-version-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: #eef2ff;
+    color: #4f46e5;
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid #c7d2fe;
+    letter-spacing: 0.3px;
+}
+
+.scc-header-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: var(--scc-text-muted);
+}
+
+/* Envoltório das Abas e Botão de Ação */
+.scc-nav-tabs-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+}
+
+.scc-nav-tabs {
+    border-bottom: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+}
+
+.scc-nav-tabs .nav-tab {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 10px 14px !important;
+    font-weight: 500 !important;
+    color: var(--scc-text-muted, #646970) !important;
+    transition: all 0.2s ease !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    outline: none !important;
+}
+
+.scc-nav-tabs .nav-tab:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.scc-nav-tabs .nav-tab:focus-visible {
+    outline: 2px solid var(--scc-accent, #2271b1) !important;
+    outline-offset: 2px !important;
+}
+
+.scc-nav-tabs .nav-tab .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+.scc-nav-tabs .nav-tab:hover {
+    color: var(--scc-accent, #2271b1) !important;
+    background: rgba(34, 113, 177, 0.04) !important;
+}
+
+.scc-nav-tabs .nav-tab-active {
+    color: var(--scc-accent, #2271b1) !important;
+    border-bottom-color: var(--scc-accent, #2271b1) !important;
+    font-weight: 600 !important;
+    background: #ffffff !important;
+}
+
+/* Botão de Simulação do Banner */
+.scc-btn-preview-trigger {
+    background: #ffffff !important;
+    border: 1px solid #d2d4d7 !important;
+    border-radius: 6px !important;
+    padding: 7px 14px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: #3c434a !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.scc-btn-preview-trigger:hover {
+    color: var(--scc-accent, #2271b1) !important;
+    border-color: var(--scc-accent, #2271b1) !important;
+    background: #f0f6fc !important;
+    transform: translateY(-1px);
+}
+
+.scc-btn-preview-trigger .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+/* Chaves Seletoras (Toggle Switches Modernos) */
+.scc-form-control-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scc-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.scc-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.scc-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.scc-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.scc-toggle-switch input:checked+.scc-toggle-slider {
+    background-color: var(--scc-accent, #2271b1);
+}
+
+.scc-toggle-switch input:checked+.scc-toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* Form Controls */
+.scc-select-field,
+.scc-input-text,
+.scc-textarea-field,
+.scc-input-number {
+    border: 1px solid #d2d4d7 !important;
+    border-radius: 6px !important;
+    padding: 7px 12px !important;
+    font-size: 13px !important;
+    color: #1d2327 !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.scc-select-field:focus,
+.scc-input-text:focus,
+.scc-textarea-field:focus,
+.scc-input-number:focus {
+    border-color: var(--scc-accent, #2271b1) !important;
+    box-shadow: 0 0 0 3px rgba(34, 113, 177, 0.12) !important;
+    outline: none !important;
+}
+
+.scc-textarea-field {
+    min-height: 90px;
+    line-height: 1.5;
+}
+
+/* Customização do Submit Box (Widget de Publicar WP) */
+/* body.wn-active .scc-submit-postbox,
+.scc-submit-postbox {
+    border-radius: 10px !important;
+    border: 1px solid #dcdcde !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+}
+
+.scc-submit-postbox .postbox-header {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px 16px !important;
+}
+
+.scc-submit-postbox .postbox-header h2 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.scc-submit-postbox .postbox-header .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: var(--scc-accent, #2271b1);
+}
+
+.scc-submit-postbox .inside {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.scc-submit-postbox #minor-publishing {
+    padding: 12px 16px;
+    background: #ffffff;
+}
+
+.scc-submit-postbox .misc-pub-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: var(--scc-text-muted);
+}
+
+.scc-submit-postbox .misc-pub-section .dashicons {
+    color: #64748b;
+    font-size: 17px;
+    width: 17px;
+    height: 17px;
+} */
+
+.scc-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.scc-status-badge.active {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.scc-status-badge.inactive {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.scc-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* Major Publishing Actions - Botões Alinhados Lado a Lado (100% Largura), Um Abaixo do Outro */
+#poststuff .scc-submit-postbox #major-publishing-actions,
+body #poststuff .scc-submit-postbox #major-publishing-actions {
+    background: #f8fafc !important;
+    border-top: 1px solid #e2e8f0 !important;
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#poststuff .scc-submit-postbox #publishing-action,
+body #poststuff .scc-submit-postbox #publishing-action {
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+#poststuff .scc-submit-postbox .scc-btn-save-main,
+body #poststuff .scc-submit-postbox .scc-btn-save-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border-radius: 6px !important;
+    padding: 10px 16px !important;
+    height: 42px !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    box-shadow: 0 2px 4px rgba(34, 113, 177, 0.2) !important;
+    background: var(--scc-accent, #2271b1) !important;
+    border: 1px solid var(--scc-accent, #2271b1) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+#poststuff .scc-submit-postbox .scc-btn-save-main:hover,
+body #poststuff .scc-submit-postbox .scc-btn-save-main:hover {
+    background: #1d5f96 !important;
+    border-color: #1d5f96 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(34, 113, 177, 0.3) !important;
+}
+
+#poststuff .scc-submit-postbox .scc-btn-preview-secondary,
+body #poststuff .scc-submit-postbox .scc-btn-preview-secondary {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    padding: 0 14px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    transition: all 0.15s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    float: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    outline: none !important;
+}
+
+#poststuff .scc-submit-postbox .scc-btn-preview-secondary .dashicons,
+body #poststuff .scc-submit-postbox .scc-btn-preview-secondary .dashicons {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 1 !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#poststuff .scc-submit-postbox .scc-btn-preview-secondary:hover,
+body #poststuff .scc-submit-postbox .scc-btn-preview-secondary:hover {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: #94a3b8 !important;
+    transform: translateY(-1px) !important;
+}
+
+.scc-sidebar-extra-actions {
+    display: none !important;
+}
+
+/* ── Seção Cores e Estilo Visual (Compacto + Color Picker Nativo) ────── */
+
+.scc-cfields {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.scc-cgroup-title {
+    margin: 18px 0 8px 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #646970;
+    border-bottom: 1px solid #f0f0f1;
+    padding-bottom: 6px;
+}
+
+.scc-cgroup-title:first-child {
+    margin-top: 0;
+}
+
+.scc-cgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+}
+
+.scc-cgrid-3 {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.scc-cfield {
+    background: #f9f9f9;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    padding: 10px 12px;
+    min-width: 0;
+}
+
+.scc-cfield>label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #3c434a;
+    margin-bottom: 7px;
+}
+
+.scc-cfield-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scc-native-color {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    padding: 2px;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.scc-native-color::-webkit-color-swatch-wrapper {
+    padding: 2px;
+}
+
+.scc-native-color::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+}
+
+.scc-native-color::-moz-color-swatch {
+    border: none;
+    border-radius: 4px;
+}
+
+.scc-native-color:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.scc-hex-value {
+    flex: 1;
+    min-width: 0;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    padding: 7px 9px;
+    border: 1px solid #d2d4d7;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: none;
+}
+
+.scc-cfield .scc-select-field {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.scc-radius-input {
+    width: 100% !important;
+    max-width: none !important;
+    text-align: center;
+}
+
+.scc-auto {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #646970;
+    cursor: pointer;
+    user-select: none;
+}
+
+.scc-auto input[type="checkbox"] {
+    margin: 0;
+}

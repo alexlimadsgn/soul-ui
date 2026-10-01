@@ -1,0 +1,916 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Modo de Manutenção - Admin Styles (Padrão WordPress)
+───────────────────────────────────────────────────────────────────────────── */
+
+.wrap.wpmc-admin-page {
+    max-width: 1200px;
+}
+
+.wrap.wpmc-admin-page .nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+
+/* Layout Principal no padrão WordPress Poststuff */
+.wpmc-poststuff {
+    padding-top: 10px;
+}
+
+.wpmc-poststuff #post-body {
+    margin-right: 0 !important;
+}
+
+.wpmc-poststuff #post-body-content {
+    float: none !important;
+    width: auto !important;
+}
+
+.wpmc-poststuff #postbox-container-1 {
+    float: none !important;
+    margin-right: 0 !important;
+    width: auto !important;
+}
+
+@media (min-width: 851px) {
+    .wpmc-poststuff .metabox-holder.columns-2 {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .wpmc-postbox-sidebar {
+        position: sticky;
+        top: 50px;
+    }
+}
+
+@media (max-width: 850px) {
+    .wpmc-poststuff .metabox-holder.columns-2 {
+        display: block;
+    }
+
+    .wpmc-postbox-sidebar {
+        margin-top: 20px;
+    }
+}
+
+.wpmc-admin-section {
+    display: none;
+}
+
+.wpmc-admin-section.active {
+    display: block;
+}
+
+.wpmc-btn-block {
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
+}
+
+/* Postbox Publicar / submitbox */
+#submitdiv .inside {
+    margin: 0;
+    padding: 0;
+}
+
+#submitdiv #minor-publishing {
+    padding: 10px 12px;
+}
+
+#submitdiv #misc-publishing-actions .misc-pub-section {
+    padding: 6px 0;
+    font-size: 13px;
+    color: #646970;
+}
+
+#submitdiv #misc-publishing-actions .misc-pub-section strong {
+    color: #1d2327;
+}
+
+#submitdiv #major-publishing-actions {
+    background: #f6f7f7;
+    border-top: 1px solid #dcdcde;
+    padding: 10px 12px;
+}
+
+#submitdiv #major-publishing-actions #publishing-action {
+    float: none;
+    text-align: center;
+}
+
+/* Tabelas e Formulários */
+.wpmc-admin-page .form-table {
+    margin: 0;
+    border: none;
+    background: transparent !important;
+}
+
+.wpmc-admin-page .form-table th {
+    width: 200px;
+    padding: 14px 16px 14px 0;
+    font-size: 13px;
+    color: #1d2327;
+    border: none;
+    font-weight: 600;
+}
+
+.wpmc-admin-page .form-table td {
+    padding: 12px 0;
+    border: none;
+}
+
+/* Toggle Switches */
+.wpmc-form-control-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wpmc-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.wpmc-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.wpmc-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wpmc-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.wpmc-toggle-switch input:checked + .wpmc-toggle-slider {
+    background-color: #3858e9;
+}
+
+.wpmc-toggle-switch input:checked + .wpmc-toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* Status Indicator */
+.wpmc-status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.wpmc-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.wpmc-dot-active {
+    background-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.wpmc-dot-inactive {
+    background-color: #94a3b8;
+}
+
+/* Inputs & Textareas */
+.wpmc-admin-page input[type="text"],
+.wpmc-admin-page input[type="email"],
+.wpmc-admin-page select,
+.wpmc-admin-page textarea {
+    border: 1px solid #d2d4d7 !important;
+    border-radius: 6px !important;
+    padding: 7px 12px !important;
+    font-size: 13px !important;
+    color: #1d2327 !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.wpmc-admin-page input:focus,
+.wpmc-admin-page textarea:focus,
+.wpmc-admin-page select:focus {
+    border-color: #3858e9 !important;
+    box-shadow: 0 0 0 3px rgba(56, 88, 233, 0.12) !important;
+    outline: none !important;
+}
+
+.wpmc-btn-preview {
+    background: #ffffff !important;
+    border: 1px solid #d2d4d7 !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    color: #3c434a !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 12px !important;
+}
+
+.wpmc-btn-preview:hover {
+    color: #3858e9 !important;
+    border-color: #3858e9 !important;
+    background: #f0f6fc !important;
+}
+
+/* Estilos do Color Picker Customizado (Design do Paper - Atualizado com 3 Sliders) */
+
+.wpmc-picker-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wpmc-picker-preview-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: block;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wpmc-picker-preview-button:hover {
+    transform: scale(1.08);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wpmc-color-picker {
+    width: 110px !important;
+    height: 36px !important;
+    padding: 0 8px !important;
+    border: 1px solid #d2d4d7 !important;
+    border-radius: 8px !important;
+    font-family: monospace !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.wpmc-paper-picker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1), 
+                0px 20px 24px -4px rgba(0, 0, 0, 0.08), 
+                0px 8px 8px -4px rgba(0, 0, 0, 0.04), 
+                0px 3px 3px -1.5px rgba(0, 0, 0, 0.05);
+    z-index: 99999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: wpmc-picker-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes wpmc-picker-fade {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wpmc-picker-header {
+    margin: 4px 4px 0 4px;
+    height: 100px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+    transition: background-color 0.25s ease;
+    user-select: none;
+}
+
+.wpmc-hash {
+    opacity: 0.5;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.wpmc-hex-text {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wpmc-picker-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wpmc-swatches-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.wpmc-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wpmc-swatch:hover {
+    transform: scale(1.25);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Seção de Controles (Conta-gotas + Sliders) */
+.wpmc-controls-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
+}
+
+.wpmc-eyedropper-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #D4D4D4;
+    background: #ffffff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.wpmc-eyedropper-btn:hover {
+    background: #f5f5f5;
+    border-color: #c3c3c3;
+    transform: translateY(-1px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.wpmc-eyedropper-btn svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    transition: stroke 0.2s ease;
+}
+
+.wpmc-eyedropper-btn:hover svg path {
+    stroke: #7F56D9;
+}
+
+.wpmc-sliders-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Reduzido de 12px para acomodar 3 sliders */
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.wpmc-slider-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 16px; /* Ajustado de 20px */
+}
+
+/* Estilos customizados para os Sliders (Matiz, Iluminação, Opacidade) */
+.wpmc-hue-slider,
+.wpmc-lightness-slider,
+.wpmc-opacity-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px; /* Reduzido de 12px */
+    border-radius: 9999px;
+    outline: none;
+    box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.15);
+    cursor: pointer;
+    margin: 0;
+}
+
+/* Slider de Hue (Arco-íris) */
+.wpmc-hue-slider {
+    background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+}
+
+/* Slider de Iluminação (Luminosidade) - background dinâmico via JS */
+.wpmc-lightness-slider {
+    background: linear-gradient(to right, #000000 0%, #7F56D9 50%, #ffffff 100%);
+}
+
+/* Slider de Opacidade - background dinâmico via JS */
+.wpmc-opacity-slider {
+    background: #e5e5e5;
+}
+
+/* Customização dos Cursores (Thumbs) dos Sliders */
+.wpmc-hue-slider::-webkit-slider-thumb,
+.wpmc-lightness-slider::-webkit-slider-thumb,
+.wpmc-opacity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; /* Reduzido de 20px */
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #ffffff; /* Reduzido de 3px */
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease;
+}
+
+.wpmc-hue-slider::-webkit-slider-thumb {
+    background: var(--wpmc-hue-thumb, #5000FF);
+}
+
+.wpmc-lightness-slider::-webkit-slider-thumb {
+    background: var(--wpmc-light-thumb, #7F56D9);
+}
+
+.wpmc-opacity-slider::-webkit-slider-thumb {
+    background: var(--wpmc-opacity-thumb, #7F56D9);
+}
+
+.wpmc-hue-slider::-webkit-slider-thumb:hover,
+.wpmc-lightness-slider::-webkit-slider-thumb:hover,
+.wpmc-opacity-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Customização dos Cursores no Firefox */
+.wpmc-hue-slider::-moz-range-thumb,
+.wpmc-lightness-slider::-moz-range-thumb,
+.wpmc-opacity-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease;
+}
+
+.wpmc-hue-slider::-moz-range-thumb {
+    background: var(--wpmc-hue-thumb, #5000FF);
+}
+
+.wpmc-lightness-slider::-moz-range-thumb {
+    background: var(--wpmc-light-thumb, #7F56D9);
+}
+
+.wpmc-opacity-slider::-moz-range-thumb {
+    background: var(--wpmc-opacity-thumb, #7F56D9);
+}
+
+.wpmc-hue-slider::-moz-range-thumb:hover,
+.wpmc-lightness-slider::-moz-range-thumb:hover,
+.wpmc-opacity-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Input inferior digitável */
+.wpmc-input-row {
+    display: flex;
+    width: 100%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.wpmc-input-hex-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    flex-grow: 1;
+    border: 1px solid #D4D4D4;
+    border-radius: 8px 0 0 8px;
+    background: #ffffff;
+    position: relative;
+    transition: border-color 0.2s ease;
+}
+
+.wpmc-input-hex-wrapper:focus-within {
+    border-color: #7F56D9;
+}
+
+.wpmc-mini-preview {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.25s ease;
+    flex-shrink: 0;
+}
+
+.wpmc-input-hex-val {
+    font-family: 'Inter', system-ui, sans-serif !important;
+    color: #171717 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    outline: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+}
+
+.wpmc-opacity-box {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    width: 60px;
+    border: 1px solid #D4D4D4;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    background: #fdfdfd;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #737373;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: center;
+    user-select: none;
+}
+
+/* ============================================================
+   Aba de IPs Permitidos
+   ============================================================ */
+
+.wpmc-ip-current-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #f0f4ff;
+    border: 1px solid #c7d7f9;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    max-width: 460px;
+}
+
+.wpmc-ip-current-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #5b6fa6;
+}
+
+.wpmc-ip-current-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d3a6b;
+    letter-spacing: 0.5px;
+}
+
+.wpmc-btn-add-ip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 7px 14px;
+    border: 1px solid #4f6ac8;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #3b54a0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    width: fit-content;
+}
+
+.wpmc-btn-add-ip:hover {
+    background: #4f6ac8;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.wpmc-btn-add-ip.wpmc-btn-success {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.wpmc-ip-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    padding: 1px 8px;
+    background: #2271b1;
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.wpmc-ips-textarea {
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+    width: 100% !important;
+    max-width: 460px !important;
+    border: 1px solid #d0d5dd !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    resize: vertical !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+}
+
+.wpmc-ips-textarea:focus {
+    border-color: #2271b1 !important;
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.15) !important;
+    outline: none !important;
+}
+
+/* ============================================================
+   Layout de Design & Pré-visualização Integrada em Tempo Real
+   ============================================================ */
+.wpmc-design-grid-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.15fr);
+    gap: 28px;
+    align-items: start;
+    padding: 6px 0;
+}
+
+@media (max-width: 1100px) {
+    .wpmc-design-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.wpmc-design-controls-col {
+    min-width: 0;
+}
+
+.wpmc-design-table th {
+    width: 140px !important;
+}
+
+.wpmc-design-preview-col {
+    position: sticky;
+    top: 50px;
+    min-width: 0;
+    width: 100%;
+}
+
+/* Card de Pré-visualização em Tempo Real */
+.wpmc-live-preview-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.wpmc-live-preview-header {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.wpmc-live-preview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.wpmc-live-preview-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    display: inline-block;
+    animation: wpmc-pulse 2s infinite;
+}
+
+@keyframes wpmc-pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.wpmc-preview-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Página de Manutenção Simulada */
+.wpmc-preview-page {
+    width: 100%;
+    max-width: 100%;
+    background: radial-gradient(circle at top left, var(--wpmc-bg-start, #0E2E3F) 0%, var(--wpmc-bg-end, #081C27) 100%);
+    padding: 28px 24px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    font-family: var(--wpmc-font-family, 'Outfit'), sans-serif;
+    color: var(--wpmc-text-primary, #ffffff);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+    transition: background 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.wpmc-preview-logo {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.wpmc-preview-logo img.wpmc-preview-logo-img {
+    max-width: 90px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.wpmc-preview-logo-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--wpmc-text-primary, #ffffff) 0%, var(--wpmc-text-secondary, #94a3b8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.wpmc-preview-content .wpmc-preview-h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--wpmc-text-primary, #ffffff) 30%, var(--wpmc-accent-color, #6366f1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+.wpmc-preview-content .wpmc-preview-desc {
+    color: var(--wpmc-text-secondary, #94a3b8);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    font-weight: 300;
+    text-align: center;
+}
+
+.wpmc-preview-contacts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    width: 100%;
+}
+
+.wpmc-preview-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--wpmc-card-bg, rgba(15, 23, 42, 0.55));
+    border: 1px solid color-mix(in srgb, var(--wpmc-text-primary, #ffffff) 8%, transparent);
+    border-radius: 10px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.wpmc-preview-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: color-mix(in srgb, var(--wpmc-accent-color, #6366f1) 10%, transparent);
+    border-radius: 6px;
+    color: var(--wpmc-accent-color, #818cf8);
+    flex-shrink: 0;
+}
+
+.wpmc-preview-icon-wrapper svg {
+    width: 14px;
+    height: 14px;
+}
+
+.wpmc-preview-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.wpmc-preview-contact-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wpmc-text-secondary, #64748b);
+}
+
+.wpmc-preview-contact-value {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wpmc-text-primary, #e2e8f0);
+    word-break: break-all;
+}
+
+.wpmc-preview-footer-attribution {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    color: color-mix(in srgb, var(--wpmc-text-secondary, #475569) 70%, transparent);
+    font-size: 0.65rem;
+    z-index: 1;
+    border-top: 1px solid color-mix(in srgb, var(--wpmc-text-primary, #ffffff) 6%, transparent);
+    margin-top: 6px;
+}
+
+.wpmc-preview-footer-attribution a {
+    color: var(--wpmc-accent-color, #6366f1);
+    text-decoration: none;
+    font-weight: 600;
+}

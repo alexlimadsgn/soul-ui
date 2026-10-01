@@ -1,0 +1,1226 @@
+/* ==========================================================================
+   Code Editor IDE - Folha de Estilos (Tema Light Premium)
+   ========================================================================== */
+
+/* Integração com o WordPress Admin */
+.toplevel_page_code-editor-ide #wpcontent,
+.file-editor_page_code-editor-themes #wpcontent,
+.appearance_page_code-editor-ide #wpcontent,
+.plugins_page_code-editor-plugins #wpcontent {
+    padding: 0 !important;
+}
+
+.toplevel_page_code-editor-ide #wpbody,
+.file-editor_page_code-editor-themes #wpbody,
+.appearance_page_code-editor-ide #wpbody,
+.plugins_page_code-editor-plugins #wpbody {
+    padding: 0 !important;
+}
+
+.toplevel_page_code-editor-ide #wpbody-content,
+.file-editor_page_code-editor-themes #wpbody-content,
+.appearance_page_code-editor-ide #wpbody-content,
+.plugins_page_code-editor-plugins #wpbody-content {
+    padding: 0 !important;
+    float: none;
+    width: auto;
+}
+
+.toplevel_page_code-editor-ide #wpfooter,
+.file-editor_page_code-editor-themes #wpfooter,
+.appearance_page_code-editor-ide #wpfooter,
+.plugins_page_code-editor-plugins #wpfooter,
+.toplevel_page_code-editor-ide .update-nag,
+.file-editor_page_code-editor-themes .update-nag,
+.appearance_page_code-editor-ide .update-nag,
+.plugins_page_code-editor-plugins .update-nag,
+.toplevel_page_code-editor-ide .notice,
+.file-editor_page_code-editor-themes .notice,
+.appearance_page_code-editor-ide .notice,
+.plugins_page_code-editor-plugins .notice,
+.toplevel_page_code-editor-ide .error,
+.file-editor_page_code-editor-themes .error,
+.appearance_page_code-editor-ide .error,
+.plugins_page_code-editor-plugins .error,
+.toplevel_page_code-editor-ide .updated,
+.file-editor_page_code-editor-themes .updated,
+.appearance_page_code-editor-ide .updated,
+.plugins_page_code-editor-plugins .updated {
+    display: none !important;
+}
+
+/* Utilitários gerais */
+.is-hidden {
+    display: none !important;
+}
+
+.ide-hidden-uploader {
+    display: none !important;
+}
+
+/* Container Geral da IDE */
+.ide-wrap {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #1e293b;
+    /* Slate 800 */
+    height: calc(100vh - 52px) !important;
+    /* Descontando a admin bar */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden !important;
+}
+
+@media screen and (max-width: 782px) {
+    .ide-wrap {
+        height: calc(100vh - 46px) !important;
+    }
+}
+
+/* Header Superior */
+.ide-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    border-bottom: none;
+    padding: 12px 0px 24px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.ide-logo-area {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+/* Forçar reset absoluto do h1 para evitar estilos globais do WP Admin */
+.ide-title,
+.appearance_page_code-editor-ide .ide-logo-area h1,
+.file-editor_page_code-editor-themes .ide-logo-area h1,
+.plugins_page_code-editor-plugins .ide-logo-area h1 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.025em !important;
+    float: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Indicador de Contexto no Header do Editor (Tema ou Plugin) */
+.ide-nav-context-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ide-nav-context-badge svg {
+    color: #4f46e5;
+    flex-shrink: 0;
+}
+
+.ide-nav-context-text {
+    letter-spacing: -0.01em;
+}
+
+.ide-select-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ide-target-select {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 4px 28px 4px 10px;
+    max-width: 260px;
+    height: 32px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.ide-target-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.ide-theme-indicator {
+    background-color: #6366f1;
+    /* Indigo 500 */
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Informações do Arquivo Ativo */
+.ide-active-file-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f1f5f9;
+    /* Slate 100 */
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    /* Slate 300 */
+    max-width: 50%;
+}
+
+.ide-icon-file-status {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.ide-active-filename {
+    font-family: 'Fira Code', Consolas, Monaco, monospace;
+    font-size: 13px;
+    color: #334155;
+    /* Slate 700 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ide-modified-dot {
+    color: #ef4444;
+    /* Red 500 */
+    font-size: 14px;
+    line-height: 1;
+    animation: ide-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes ide-pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Botões da Header */
+.ide-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ide-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ide-btn-primary {
+    background-color: #4f46e5;
+    /* Indigo 600 */
+    color: #ffffff;
+}
+
+.ide-btn-primary:hover:not(:disabled) {
+    background-color: #4338ca;
+    /* Indigo 700 */
+}
+
+.ide-btn-primary:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+}
+
+.ide-btn-secondary {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.ide-btn-secondary:hover:not(:disabled) {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.ide-btn-secondary.active {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    border-color: #c7d2fe;
+}
+
+.ide-btn-secondary:disabled {
+    background-color: #f8fafc;
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Variante icon-only: padding quadrado, sem gap, tamanho fixo */
+.ide-btn-icon-only {
+    padding: 9px;
+    gap: 0;
+    width: 38px;
+    height: 38px;
+}
+
+.ide-btn-icon-only svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Spinner animado para o salvamento */
+.ide-btn-loader {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ffffff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: ide-spin 0.6s linear infinite;
+}
+
+/* Variante escura do spinner (para botões com fundo claro) */
+.ide-btn-loader--dark {
+    border-color: #166534;
+    border-top-color: transparent;
+}
+
+@keyframes ide-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Botão de Download do Tema */
+.ide-btn-download {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.ide-btn-download:hover:not(:disabled) {
+    background-color: #bbf7d0;
+    color: #14532d;
+    border-color: #86efac;
+}
+
+.ide-btn-download:disabled {
+    background-color: #f0fdf4;
+    color: #86efac;
+    border-color: #dcfce7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Ícone SVG dentro dos botões */
+.ide-btn-icon {
+    flex-shrink: 0;
+}
+
+/* Corpo Principal (Layout das Janelas) */
+.ide-body {
+    display: flex;
+    flex: 1;
+    height: 0;
+    position: relative;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+/* Container do Editor como Janela com Borda e Sombra */
+.ide-editor-container {
+    flex: 1;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Barra de Navegação Superior do Editor (Tabs Temas/Plugins e Select) */
+.ide-editor-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    height: 48px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.ide-editor-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ide-editor-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ide-editor-main-area {
+    flex: 1;
+    position: relative;
+    height: calc(100% - 48px);
+    overflow: hidden;
+}
+
+.ide-monaco-editor {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tela de Boas-Vindas */
+.ide-welcome-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.ide-welcome-content {
+    max-width: 480px;
+}
+
+.ide-welcome-icon {
+    font-size: 52px;
+    margin-bottom: 20px;
+    animation: ide-bounce 2s infinite ease-in-out;
+}
+
+@keyframes ide-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.ide-welcome-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 12px 0;
+}
+
+.ide-welcome-content p {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 32px 0;
+}
+
+.ide-welcome-shortcuts {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.ide-shortcut-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #334155;
+}
+
+.ide-shortcut-row kbd {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    color: #0f172a;
+    font-size: 11px;
+    padding: 2px 6px;
+    font-family: inherit;
+    box-shadow: 0 2px 0 #cbd5e1;
+}
+
+.ide-shortcut-row span {
+    color: #64748b;
+}
+
+/* Sidebar na Direita como Janela com Borda e Sombra */
+.ide-sidebar {
+    width: 280px;
+    min-width: 240px;
+    max-width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    /* Borda completa */
+    border-radius: 8px;
+    /* Cantos arredondados */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    /* Sombra elegante */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    /* Mantém os itens contidos */
+}
+
+.ide-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ide-sidebar-header span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.ide-sidebar-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ide-sidebar-btn,
+.ide-sidebar-refresh-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease-in-out;
+    width: 28px;
+    height: 28px;
+    box-sizing: border-box;
+}
+
+.ide-sidebar-btn svg,
+.ide-sidebar-refresh-btn svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+.ide-sidebar-btn:hover:not(:disabled),
+.ide-sidebar-refresh-btn:hover:not(:disabled) {
+    color: #4f46e5;
+    background-color: #f1f5f9;
+}
+
+.ide-sidebar-btn:disabled {
+    color: #cbd5e1;
+    cursor: not-allowed;
+    background: transparent;
+}
+
+/* Estilos para o Menu Dropdown na Sidebar */
+.ide-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.ide-dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 6px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    min-width: 190px;
+    padding: 6px 0;
+    animation: ide-dropdown-fade 0.15s ease-out;
+}
+
+@keyframes ide-dropdown-fade {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ide-dropdown-menu.open {
+    display: block;
+}
+
+.ide-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    color: #475569 !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1.2;
+}
+
+.ide-dropdown-item:hover:not(.disabled) {
+    background-color: #f1f5f9;
+    color: #4f46e5 !important;
+}
+
+.ide-dropdown-item.disabled {
+    color: #cbd5e1 !important;
+    cursor: not-allowed;
+    background: transparent !important;
+}
+
+.ide-dropdown-item svg {
+    color: #64748b;
+    flex-shrink: 0;
+    transition: color 0.15s ease-in-out;
+}
+
+.ide-dropdown-item:hover:not(.disabled) svg {
+    color: #4f46e5;
+}
+
+.ide-dropdown-item.disabled svg {
+    color: #cbd5e1 !important;
+}
+
+.ide-dropdown-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 6px 0;
+}
+
+.ide-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 6px;
+}
+
+/* Scrollbars Customizados da Sidebar */
+.ide-sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ide-sidebar-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ide-sidebar-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.ide-sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Loading da Árvore */
+.ide-tree-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    padding: 40px 20px;
+    color: #64748b;
+    font-size: 13px;
+    text-align: center;
+}
+
+.ide-tree-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: ide-spin 0.8s linear infinite;
+}
+
+/* Componentes da Árvore de Arquivos (Custom CSS Tree) */
+.ide-files-tree-list {
+    user-select: none;
+}
+
+.ide-tree-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    margin: 1px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #334155;
+    /* Texto cinza escuro */
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    position: relative;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.ide-tree-item:hover {
+    background-color: #f1f5f9;
+    /* Slate 100 */
+    color: #0f172a;
+}
+
+.ide-tree-item.active {
+    background-color: #e0e7ff;
+    /* Indigo 100 */
+    border-left: 2px solid #4f46e5;
+    /* Indigo 600 */
+    color: #1e1b4b;
+    /* Indigo 950 */
+}
+
+/* Indentação de acordo com o nível na árvore */
+.ide-tree-indent {
+    display: inline-block;
+    width: calc(var(--ide-indent-depth, 1) * 12px);
+    height: 1px;
+    flex-shrink: 0;
+}
+
+/* Espaçador invisível para arquivos alinharem com pastas */
+.ide-toggle-spacer {
+    visibility: hidden;
+}
+
+.ide-tree-error {
+    color: #f43f5e !important;
+}
+
+.ide-loading-state {
+    opacity: 0.5 !important;
+}
+
+/* Setas de Expandir/Colapsar Pastas */
+.ide-tree-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    color: #64748b;
+    font-size: 10px;
+    transition: transform 0.15s ease;
+}
+
+.ide-tree-toggle.open {
+    transform: rotate(90deg);
+}
+
+/* Ícones para Diretórios e Arquivos */
+.ide-tree-icon {
+    margin-right: 8px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ide-tree-folder-icon {
+    color: #eab308;
+    /* Yellow 500 */
+}
+
+.ide-tree-file-icon {
+    color: #64748b;
+    /* Slate 500 */
+}
+
+/* Diferenciação de arquivos por extensão (contraste no fundo claro) */
+.ide-file-php .ide-tree-file-icon {
+    color: #625c93;
+}
+
+.ide-file-css .ide-tree-file-icon {
+    color: #0284c7;
+}
+
+.ide-file-js .ide-tree-file-icon {
+    color: #b45309;
+}
+
+.ide-file-json .ide-tree-file-icon {
+    color: #db2777;
+}
+
+.ide-file-md .ide-tree-file-icon {
+    color: #059669;
+}
+
+/* Sub-container de arquivos dentro de uma pasta */
+.ide-tree-subtree {
+    display: none;
+}
+
+.ide-tree-subtree.open {
+    display: block;
+}
+
+/* Alertas customizados de salvamento no rodapé ou canto superior */
+.ide-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ide-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ide-toast-success {
+    background-color: #10b981;
+    /* Emerald 500 */
+    border-left: 4px solid #059669;
+}
+
+.ide-toast-error {
+    background-color: #ef4444;
+    /* Red 500 */
+    border-left: 4px solid #dc2626;
+}
+
+/* Customizar barra de rolagem do Monaco Editor para ser mais fina e discreta */
+.ide-editor-container .monaco-editor .scrollbar .slider {
+    background: #cbd5e1 !important;
+    border-radius: 3px !important;
+    opacity: 0.8;
+}
+
+.ide-editor-container .monaco-editor .scrollbar .slider:hover {
+    background: #94a3b8 !important;
+    opacity: 1;
+}
+
+.ide-editor-container .monaco-editor .scrollbar .slider.active {
+    background: #64748b !important;
+}
+
+/* ==========================================================================
+   Correção de conflitos do Monaco Editor com estilos do WordPress Admin
+   ========================================================================== */
+
+/* Remove estilos globais de botões do WP que deformam a interface do Monaco */
+.monaco-editor .find-widget .button,
+.monaco-editor .find-widget button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    line-height: normal !important;
+    min-height: auto !important;
+    min-width: auto !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
+    transition: none !important;
+}
+
+.monaco-editor .find-widget .button:hover,
+.monaco-editor .find-widget button:hover {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: inherit !important;
+}
+
+.monaco-editor .find-widget .button:focus,
+.monaco-editor .find-widget button:focus,
+.monaco-editor .find-widget .button:active,
+.monaco-editor .find-widget button:active {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: inherit !important;
+}
+
+/* Corrige os inputs de texto dentro da barra de pesquisa e outros painéis do Monaco */
+.monaco-editor .find-widget input,
+.monaco-editor .monaco-inputbox input {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 4px !important;
+    margin: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    min-height: auto !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    box-sizing: border-box !important;
+}
+
+.monaco-editor .find-widget input:focus,
+.monaco-editor .monaco-inputbox input:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Evita que inputs escondidos de acessibilidade (como checkboxes) fiquem visíveis por estilos do WP */
+.monaco-editor .monaco-checkbox input {
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    pointer-events: none !important;
+}
+
+/* Limpa o visual do contador de resultados ("No results") */
+.monaco-editor .find-widget .matchesCount {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   Painel de Preview de Imagem (Tema Light Premium)
+   ========================================================================== */
+.ide-image-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-sizing: border-box;
+    padding: 32px;
+}
+
+.ide-image-preview-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.ide-image-preview-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+    max-height: calc(100vh - 280px);
+    overflow: auto;
+    background-image:
+        linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(-45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
+        linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+#ide-preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.ide-image-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px 18px;
+    font-size: 13px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.ide-image-dimension-label,
+.ide-image-path-label {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.ide-image-info-val {
+    font-family: 'Fira Code', Consolas, monospace;
+    color: #334155;
+    word-break: break-all;
+}
+
+/* ==========================================================================
+   Botão de Excluir na Árvore de Arquivos e Modal de Confirmação
+   ========================================================================== */
+
+/* Ajuste no item da árvore para acomodar a lixeira */
+.ide-tree-item {
+    position: relative;
+    padding-right: 32px !important;
+}
+
+.ide-tree-delete-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.15s ease-in-out;
+    width: 22px;
+    height: 22px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.ide-tree-delete-btn svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+.ide-tree-item:hover .ide-tree-delete-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ide-tree-delete-btn:hover {
+    color: #ef4444 !important;
+    background-color: #fee2e2;
+}
+
+/* Modal Customizado de Confirmação */
+.ide-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    animation: ide-modal-fade 0.2s ease-out;
+}
+
+@keyframes ide-modal-fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.ide-modal-box {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 420px;
+    max-width: 90%;
+    overflow: hidden;
+    animation: ide-modal-slide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ide-modal-slide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ide-modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.ide-modal-header h3 {
+    margin: 0 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    line-height: 1.4 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.ide-modal-body {
+    padding: 20px;
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.ide-modal-body strong {
+    color: #0f172a;
+    word-break: break-all;
+}
+
+.ide-modal-warning {
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ide-modal-warning::before {
+    content: "⚠️";
+    font-size: 14px;
+}
+
+.ide-modal-footer {
+    padding: 12px 20px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background-color: #f8fafc;
+}
+
+.ide-btn-danger {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.ide-btn-danger:hover:not(:disabled) {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.ide-btn-danger:disabled {
+    background-color: #fca5a5;
+    cursor: not-allowed;
+}

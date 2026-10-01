@@ -1,0 +1,19 @@
+/* ── Theme and Plugin Editor Modernization ── */
+
+/* Adjust indentation in the file list sidebar */
+#templateside {
+    width: 17em;
+}
+
+#template>div {
+    margin-right: 17em !important;
+}
+
+#templateside>ul {
+    padding: 8px 8px 16px 8px !important
+}
+
+#templateside li:not(.howto) a,
+.theme-editor-php .highlight {
+    padding: 0 !important;
+}

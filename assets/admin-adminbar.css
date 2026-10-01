@@ -1,0 +1,614 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WP Notion UI — Admin Bar  v2.1
+   Visual reference: Paper Dashboard (topbar #ffffff, border-bottom #dcdcde,
+   buttons, shortcuts, palette dropdown, profile dropdown)
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── PJAX Progress Loader Bar ────────────────────────────────────────────── */
+
+#wn-pjax-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--wn-accent, #3858e9);
+    z-index: 100000;
+    pointer-events: none;
+    opacity: 0;
+    transition: width 300ms ease, opacity 200ms ease;
+    box-shadow: 0 0 10px var(--wn-accent, #3858e9);
+}
+
+/* ── Hide native WP admin bar ─────────────────────────────────────────────── */
+
+body.wn-active #wpadminbar {
+    display: none !important;
+}
+
+body.wn-active.admin-bar {
+    padding-top: 0 !important;
+}
+
+body.wn-active.admin-bar html {
+    margin-top: 0 !important;
+}
+
+/* ── Topbar Background & Container ───────────────────────────────────────── */
+
+#wn-adminbar-bg {
+    position: fixed;
+    top: 0;
+    left: var(--wn-w) !important;
+    right: 0;
+    height: 52px;
+    background: #ffffff;
+    border-bottom: 1px solid #dcdcde;
+    z-index: 9997;
+    pointer-events: none;
+    will-change: left;
+}
+
+#wn-adminbar {
+    position: fixed;
+    top: 0;
+    left: var(--wn-w) !important;
+    right: 0;
+    height: 52px;
+    background: #ffffff;
+    border-bottom: 1px solid #dcdcde;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    z-index: 9998;
+    will-change: left;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #2c3338;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+/* Transições de posição ativadas SOMENTE após o carregamento completo */
+html.wn-ready #wn-adminbar-bg,
+html.wn-ready #wn-adminbar {
+    transition: left 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── Toggle button (hamburger) ───────────────────────────────────────────── */
+
+.wn-bar-toggle {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3338;
+    cursor: pointer;
+    flex-shrink: 0;
+    border-radius: 4px;
+    transition: color 150ms ease, background 150ms ease;
+    padding: 0;
+}
+
+.wn-bar-toggle:hover {
+    color: var(--wn-accent, #3858e9);
+    background: #f0f0f1;
+}
+
+.wn-bar-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Left link cluster ───────────────────────────────────────────────────── */
+
+.wn-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.wn-bar-view-site {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #2c3338 !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 150ms ease-in-out;
+    white-space: nowrap;
+}
+
+.wn-bar-view-site:hover {
+    background-color: #f6f7f7;
+    color: #1d2327 !important;
+}
+
+.wn-bar-view-site svg {
+    width: 16px;
+    height: 16px;
+    color: #2c3338;
+    flex-shrink: 0;
+}
+
+.wn-bar-view-site svg.wn-icon-external {
+    width: 12px;
+    height: 12px;
+    opacity: 0.5;
+}
+
+/* Badge de Manutenção Ativa */
+.wn-maintenance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #d97706 !important;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 150ms ease;
+}
+
+.wn-maintenance-badge:hover {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: #d97706;
+}
+
+.wn-maintenance-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d97706;
+    animation: wn-pulse 2s infinite ease-in-out;
+}
+
+@keyframes wn-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ── Page title badge ────────────────────────────────────────────────────── */
+
+.wn-bar-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.wn-bar-badge-page {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background-color: #f6f7f7;
+    color: #1d2327 !important;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+/* ── Right action cluster ────────────────────────────────────────────────── */
+
+.wn-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+/* Search pill / Ctrl K */
+.wn-bar-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.wn-bar-search:hover {
+    background: #f0f0f1;
+    border-color: #c3c4c7;
+}
+
+.wn-bar-search svg {
+    width: 14px;
+    height: 14px;
+    color: #8c8f94;
+}
+
+.wn-bar-search-kbd {
+    padding: 1px 5px;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #646970;
+    line-height: 1.2;
+}
+
+.wn-bar-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #2c3338;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 150ms ease;
+    padding: 0;
+}
+
+.wn-bar-action:hover {
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+/* Theme Group & Trigger */
+.wn-bar-theme-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.wn-theme-trigger {
+    width: 32px;
+    height: 32px;
+}
+
+.wn-theme-trigger svg {
+    width: 16px;
+    height: 16px;
+    color: #2c3338;
+}
+
+/* ── Theme Palette Dropdown ──────────────────────────────────────────────── */
+
+.wn-bar-theme-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 260px;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    padding: 14px;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.wn-bar-theme-group:hover .wn-bar-theme-dropdown,
+.wn-bar-theme-group:focus-within .wn-bar-theme-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.wn-dropdown-theme-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #dcdcde;
+    color: #1d2327;
+}
+
+.wn-dropdown-theme-header svg {
+    width: 16px;
+    height: 16px;
+    color: #1d2327;
+}
+
+.wn-dropdown-theme-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.wn-theme-palette-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wn-theme-palette-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #f0f0f1;
+    border: 1px solid #dcdcde;
+    color: #1d2327;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: all 150ms ease;
+    box-sizing: border-box;
+}
+
+.wn-theme-palette-btn:hover {
+    background: #e4e4e6;
+    border-color: #c3c4c7;
+}
+
+.wn-theme-palette-btn.is-active {
+    background: #f6f7f7;
+    border-color: #3858e9;
+    box-shadow: 0 0 0 1px #3858e9;
+    font-weight: 600;
+}
+
+.wn-palette-color-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wn-palette-label {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── User Group & Dropdown ───────────────────────────────────────────────── */
+
+.wn-bar-user-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.wn-user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #2c3338;
+}
+
+.wn-bar-user-greeting {
+    font-size: 13px;
+    color: #2c3338;
+    white-space: nowrap;
+}
+
+.wn-user-chevron {
+    color: #2c3338;
+    transition: transform 180ms ease;
+}
+
+.wn-bar-user-group:hover .wn-user-chevron {
+    transform: rotate(180deg);
+}
+
+.wn-bar-user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 260px;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.wn-bar-user-group:hover .wn-bar-user-dropdown,
+.wn-bar-user-group:focus-within .wn-bar-user-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Perfil Header Detalhado */
+.wn-dropdown-profile-header {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wn-dropdown-profile-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wn-dropdown-display-name {
+    display: block;
+    font-weight: 600;
+    color: #1d2327;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.wn-dropdown-user-email {
+    display: block;
+    color: #646970;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wn-dropdown-user-role {
+    display: block;
+    color: #8c8f94;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.wn-dropdown-divider {
+    height: 1px;
+    background-color: #dcdcde;
+    margin: 4px 0;
+}
+
+.wn-bar-user-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #2c3338 !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    transition: background 150ms ease, color 150ms ease;
+    box-sizing: border-box;
+}
+
+.wn-bar-user-dropdown a:hover {
+    background: #f6f7f7;
+    color: #1d2327 !important;
+}
+
+.wn-bar-user-dropdown a svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: #2c3338;
+}
+
+.wn-bar-user-dropdown a.wn-logout {
+    color: #e14d43 !important;
+}
+
+.wn-bar-user-dropdown a.wn-logout:hover {
+    background: rgba(225, 77, 67, 0.08);
+    color: #e14d43 !important;
+}
+
+.wn-bar-user-dropdown a.wn-logout svg {
+    color: #e14d43;
+}
+
+/* ── Avatar Styling ──────────────────────────────────────────────────────── */
+
+.wn-bar-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wn-avatar-wrap {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+}
+
+.wn-avatar-wrap.wn-avatar-sm {
+    width: 28px;
+    height: 28px;
+}
+
+.wn-avatar-wrap.wn-avatar-lg {
+    width: 40px;
+    height: 40px;
+}
+
+.wn-avatar-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+}
+
+.wn-avatar-initials {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    user-select: none;
+    text-transform: uppercase;
+    background: #e14d43;
+    z-index: 1;
+}
+
+.wn-avatar-lg .wn-avatar-initials {
+    font-size: 14px;
+}
+
+.wn-avatar-preset-0 { background: #3b82f6; }
+.wn-avatar-preset-1 { background: #8b5cf6; }
+.wn-avatar-preset-2 { background: #ec4899; }
+.wn-avatar-preset-3 { background: #10b981; }
+.wn-avatar-preset-4 { background: #f59e0b; }
+.wn-avatar-preset-5 { background: #06b6d4; }
+.wn-avatar-preset-6 { background: #6366f1; }
+.wn-avatar-preset-7 { background: #e14d43; }

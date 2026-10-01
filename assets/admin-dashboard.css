@@ -1,0 +1,546 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WP Notion UI — Modern Dashboard (Paper Style)
+   Palette: Background #F0F0F1, Cards #FFFFFF, Border #DCDCDE, Text #1D2327
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Ajustes de layout para a página Dashboard */
+.index-php #wpcontent {
+    background: #f0f0f1 !important;
+    padding: 24px 32px 32px 32px !important;
+    box-sizing: border-box !important;
+}
+
+/* Ocultar elementos originais do Dashboard do WordPress */
+.index-php #wpbody-content>.wrap>h1,
+.index-php #screen-meta,
+.index-php #screen-meta-links,
+.index-php #wpbody-content>.notice,
+.index-php .welcome-panel-close,
+.index-php #dashboard-widgets-wrap {
+    display: none !important;
+}
+
+.index-php .welcome-panel {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.welcome-panel-content {
+    display: none !important;
+}
+
+#wn-dashboard-wrap {
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1d2327;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ── Top Header Row ──────────────────────────────────────────────────────── */
+
+.wn-dash-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.wn-dash-greeting {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #1d2327 !important;
+    margin: 0 0 4px 0 !important;
+    line-height: 1.3 !important;
+}
+
+.wn-dash-date {
+    font-size: 13px;
+    color: #646970;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.wn-dash-filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: all 150ms ease;
+    padding: 0;
+}
+
+.wn-dash-filter-btn:hover {
+    background: #f6f7f7;
+    border-color: #c3c4c7;
+}
+
+/* ── KPIs Grid ───────────────────────────────────────────────────────────── */
+
+.wn-dash-kpis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.wn-kpi-card {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    box-sizing: border-box;
+}
+
+.wn-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    border-color: #c3c4c7;
+}
+
+/* Health KPI specific */
+.wn-kpi-card--health {
+    gap: 16px;
+}
+
+.wn-kpi-chart-box {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.wn-kpi-circular-svg {
+    width: 56px;
+    height: 56px;
+    transform: rotate(-90deg);
+}
+
+.wn-kpi-chart-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1d2327;
+}
+
+.wn-kpi-health-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.wn-kpi-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #1d2327 !important;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.wn-kpi-desc {
+    font-size: 12px;
+    color: #646970;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+}
+
+.wn-kpi-status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #22c55e;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.wn-kpi-arrow-icon {
+    flex-shrink: 0;
+    color: #8c8f94;
+    transition: transform 150ms ease;
+}
+
+.wn-kpi-card--health:hover .wn-kpi-arrow-icon {
+    transform: translateX(3px);
+}
+
+/* Standard Stats KPI (Posts, Pages) */
+.wn-kpi-card--stat {
+    gap: 14px;
+}
+
+.wn-stat-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wn-stat-icon-wrap--posts {
+    background: rgba(34, 113, 177, 0.12);
+}
+
+.wn-stat-icon-wrap--pages {
+    background: rgba(114, 174, 230, 0.20);
+}
+
+.wn-stat-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.wn-stat-value {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #1d2327;
+    line-height: 1.1;
+}
+
+.wn-stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #646970;
+    margin-top: 2px;
+}
+
+/* ── Columns Grid ────────────────────────────────────────────────────────── */
+
+.wn-dash-columns-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+}
+
+.wn-dash-main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.wn-dash-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* ── Section Cards (White boxed containers) ──────────────────────────────── */
+
+.wn-dash-section-card {
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+.wn-dash-section-head {
+    margin-bottom: 16px;
+}
+
+.wn-dash-section-head h2,
+.wn-dash-section-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #1d2327 !important;
+    margin: 0 0 2px 0 !important;
+    line-height: 1.3 !important;
+}
+
+.wn-dash-section-sub {
+    font-size: 12px;
+    color: #646970;
+    margin: 0;
+}
+
+
+/* ── Quick Access Grid ───────────────────────────────────────────────────── */
+
+.wn-quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.wn-quick-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    text-decoration: none !important;
+    transition: all 150ms ease;
+    box-sizing: border-box;
+}
+
+.wn-quick-item:hover {
+    background: #f0f0f1;
+    border-color: #c3c4c7;
+    transform: translateY(-1px);
+}
+
+.wn-quick-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wn-quick-icon--posts {
+    background: rgba(34, 113, 177, 0.12);
+}
+
+.wn-quick-icon--pages {
+    background: rgba(114, 174, 230, 0.20);
+}
+
+.wn-quick-icon--media {
+    background: rgba(0, 163, 42, 0.12);
+}
+
+.wn-quick-icon--plugins {
+    background: rgba(163, 183, 69, 0.16);
+}
+
+.wn-quick-icon--themes {
+    background: rgba(214, 54, 56, 0.12);
+}
+
+.wn-quick-icon--settings {
+    background: rgba(100, 105, 112, 0.12);
+}
+
+.wn-quick-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.wn-quick-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.wn-quick-desc {
+    display: block;
+    font-size: 11px;
+    color: #646970;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wn-quick-arrow {
+    flex-shrink: 0;
+    color: #8c8f94;
+    transition: transform 150ms ease;
+}
+
+.wn-quick-item:hover .wn-quick-arrow {
+    transform: translateX(2px);
+}
+
+/* ── Custom Post Types Grid ──────────────────────────────────────────────── */
+
+.wn-cpt-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.wn-cpt-item-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    box-sizing: border-box;
+}
+
+.wn-cpt-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    text-decoration: none !important;
+}
+
+.wn-cpt-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: rgba(6, 182, 212, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wn-cpt-item-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.wn-cpt-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+    line-height: 1.3;
+}
+
+.wn-cpt-item-count {
+    font-size: 11px;
+    color: #646970;
+}
+
+.wn-cpt-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #ffffff;
+    border: 1px solid #dcdcde;
+    color: #1d2327 !important;
+    text-decoration: none !important;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: all 150ms ease;
+}
+
+.wn-cpt-add-btn:hover {
+    background: #f0f0f1;
+    border-color: #c3c4c7;
+}
+
+/* ── Side Column: Recent Activity ────────────────────────────────────────── */
+
+.wn-dash-activity-card {
+    padding: 20px;
+}
+
+.wn-dash-activity-card .wn-dash-section-head {
+    margin-bottom: 14px;
+}
+
+.wn-dash-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wn-activity-item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    transition: background 150ms ease;
+    box-sizing: border-box;
+}
+
+.wn-activity-item-row:hover {
+    background: #f6f7f7;
+}
+
+.wn-activity-row-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: rgba(56, 88, 233, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wn-activity-row-meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wn-activity-row-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d2327;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.wn-activity-row-time {
+    font-size: 11px;
+    color: #8c8f94;
+    margin-top: 1px;
+}
+
+.wn-no-activity {
+    font-size: 12px;
+    color: #8c8f94;
+    margin: 8px 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 1100px) {
+    .wn-dash-columns-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .index-php #wpcontent {
+        padding: 16px !important;
+    }
+
+    .wn-dash-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .wn-dash-kpis-grid {
+        grid-template-columns: 1fr;
+    }
+}

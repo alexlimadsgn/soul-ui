@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Modo de Manutenção - Novo Layout de Duas Colunas
+   ========================================================================== */
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--wpmc-font-family, 'Outfit', sans-serif);
+    background-color: #f8fafc;
+    color: var(--wpmc-text-primary, #ffffff);
+    overflow: hidden;
+}
+
+/* Container do Corpo */
+.form-body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.form-body>.row {
+    position: relative;
+    margin: 0;
+    height: 100%;
+    display: flex;
+}
+
+/* Coluna da Esquerda (Imagem) */
+.img-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100%;
+    overflow: hidden;
+    padding: 60px;
+    z-index: 999;
+}
+
+.img-holder .info-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.img-holder .info-holder img {
+    max-width: 100%;
+    height: auto;
+    max-height: 75vh;
+    filter: drop-shadow(0 10px 25px rgba(15, 23, 42, 0.08));
+    animation: wpmc-float 6s ease-in-out infinite;
+}
+
+.img-holder.on-top {
+    z-index: 99999;
+    transform: none;
+    padding: 40px;
+}
+
+@media (min-height: 700px) {
+    .img-holder {
+        position: fixed;
+    }
+}
+
+/* Coluna da Direita (Conteúdo) */
+.form-holder {
+    position: relative;
+    margin-left: 50vw;
+    width: calc(100% - 50vw);
+    height: 100vh;
+}
+
+.form-holder .form-content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 60px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Efeito de Fundo Azul Inclinado Customizável */
+.form-holder.custom-bg:before {
+    position: fixed;
+    content: "";
+    width: 180%;
+    height: 100vh;
+    top: 0;
+    left: 50vw;
+    transform-origin: top left;
+    transform: skewX(-15deg);
+    background: radial-gradient(circle at top left, var(--wpmc-bg-start, #0E2E3F) 0%, var(--wpmc-bg-end, #020617) 100%);
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+.form-holder.custom-bg:after {
+    display: none;
+}
+
+/* Conteúdo */
+.form-content .form-items {
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 0;
+}
+
+/* Logotipo */
+.maintenance-logo {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.maintenance-logo img {
+    max-width: 150px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.maintenance-logo-text {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--wpmc-text-primary, #ffffff) 0%, var(--wpmc-text-secondary, #94a3b8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+/* Textos */
+.maintenance-content h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: var(--wpmc-text-primary, #ffffff);
+    background: linear-gradient(135deg, var(--wpmc-text-primary, #ffffff) 50%, var(--wpmc-accent-color, #6366f1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.01em;
+}
+
+.maintenance-content p {
+    color: var(--wpmc-text-secondary, #94a3b8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+/* Grade de Contatos */
+.contacts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--wpmc-card-bg, rgba(15, 23, 42, 0.55));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid color-mix(in srgb, var(--wpmc-text-primary, #ffffff) 8%, transparent);
+    border-radius: 14px;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-card:hover {
+    background: color-mix(in srgb, var(--wpmc-text-primary, #ffffff) 6%, transparent);
+    border-color: color-mix(in srgb, var(--wpmc-accent-color, #6366f1) 30%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px color-mix(in srgb, var(--wpmc-accent-color, #6366f1) 20%, transparent);
+}
+
+.contact-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: color-mix(in srgb, var(--wpmc-accent-color, #6366f1) 15%, transparent);
+    border-radius: 10px;
+    color: var(--wpmc-accent-color, #818cf8);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.contact-icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-card:hover .contact-icon-wrapper {
+    background: var(--wpmc-accent-color, #6366f1);
+    color: #ffffff;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.contact-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wpmc-text-secondary, #64748b);
+}
+
+.contact-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--wpmc-text-primary, #e2e8f0);
+    word-break: break-word;
+}
+
+/* Rodapé (Footer) */
+.maintenance-footer {
+    width: 100%;
+    text-align: left;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--wpmc-text-primary, #ffffff) 6%, transparent);
+    color: color-mix(in srgb, var(--wpmc-text-secondary, #94a3b8) 60%, transparent);
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: auto;
+}
+
+.maintenance-footer p {
+    line-height: 1.5;
+}
+
+.maintenance-footer a {
+    color: var(--wpmc-accent-color, #6366f1);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.maintenance-footer a:hover {
+    color: var(--wpmc-text-primary, #ffffff);
+    text-decoration: underline;
+}
+
+/* Animações */
+@keyframes wpmc-float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 992px) {
+
+    html,
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .img-holder {
+        display: none;
+    }
+
+    .form-holder {
+        margin-left: 0;
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        overflow-y: visible;
+        background: radial-gradient(circle at top left, var(--wpmc-bg-start, #0E2E3F) 0%, var(--wpmc-bg-end, #020617) 100%);
+    }
+
+    .form-holder.custom-bg:before,
+    .form-holder.custom-bg:after {
+        display: none;
+        /* Desativa a inclinação */
+    }
+
+    .form-holder .form-content {
+        padding: 60px 30px;
+    }
+
+    .form-content .form-items {
+        text-align: center;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .maintenance-logo {
+        justify-content: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .maintenance-content h1 {
+        font-size: 1.85rem;
+        text-align: center;
+    }
+
+    .maintenance-content p {
+        font-size: 0.95rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .contacts-grid {
+        gap: 0.8rem;
+    }
+
+    .maintenance-footer {
+        text-align: center;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .form-holder .form-content {
+        padding: 40px 20px;
+    }
+
+    .maintenance-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .contact-card {
+        padding: 0.85rem;
+    }
+
+    .contact-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .contact-icon-wrapper svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .contact-value {
+        font-size: 0.85rem;
+    }
+}

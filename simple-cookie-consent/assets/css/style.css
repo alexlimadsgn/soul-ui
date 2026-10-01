@@ -1,0 +1,400 @@
+/* Simple Cookie Consent - Main CSS */
+/* Version: 3.2.1 - Correção de contraste e visibilidade de texto */
+
+/* Variáveis CSS padrão - serão sobrescritas pelo PHP */
+:root {
+    /* Cores principais */
+    --scc-primary-color: #0f3460;
+    --scc-primary-hover: #0a2549;
+    --scc-text-on-primary: #ffffff;
+
+    --scc-secondary-color: #ffffff;
+    --scc-secondary-hover: #f3f4f6;
+    --scc-text-on-secondary: #1d2327;
+
+    --scc-bg-color: #1a1a2e;
+    --scc-text-color: #ffffff;
+    --scc-text-on-bg: #ffffff;
+
+    /* Modal */
+    --scc-modal-bg: #ffffff;
+    --scc-modal-text: #333333;
+    --scc-text-on-modal: #000000;
+    --scc-modal-title-color: var(--scc-primary-color);
+    --scc-option-title-color: var(--scc-secondary-color);
+
+    /* Border Radius */
+    --scc-border-radius: 12px;
+    --scc-btn-radius: 8px;
+    --scc-modal-radius: 16px;
+
+    /* Bordas */
+    --scc-banner-border: none;
+    --scc-btn-border: none;
+
+    /* Outros */
+    --scc-content-gap: 16px;
+    --scc-buttons-gap: 12px;
+    --scc-btn-padding: 12px 20px;
+    --scc-btn-font-size: 0.9rem;
+    --scc-btn-weight: 600;
+    --scc-title-size: 1.25rem;
+    --scc-text-size: 0.95rem;
+    --scc-line-height: 1.6;
+}
+
+/* Base Reset para o Plugin */
+#scc-cookie-banner, #scc-cookie-modal {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#scc-cookie-banner *, #scc-cookie-modal * {
+    box-sizing: border-box;
+}
+
+/* Cookie Banner */
+#scc-cookie-banner {
+    position: fixed;
+    z-index: 999999;
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    display: none;
+    background-color: var(--scc-bg-color);
+    color: var(--scc-text-color);
+    padding: 32px;
+    border-radius: var(--scc-border-radius);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    border: var(--scc-banner-border);
+    animation: scc-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scc-close-banner {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--scc-text-color);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.scc-close-banner svg {
+    display: block;
+}
+
+.scc-close-banner:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: rotate(90deg);
+}
+#scc-cookie-banner.bottom { bottom: 24px; right: 24px; }
+#scc-cookie-banner.top { top: 24px; right: 24px; }
+
+@keyframes scc-slide-up {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.scc-text h3 {
+    margin: 0 0 12px 0;
+    font-size: var(--scc-title-size);
+    font-weight: 700;
+    color: var(--scc-primary-color);
+    line-height: 1.2;
+}
+
+.scc-text p {
+    margin: 0;
+    font-size: var(--scc-text-size);
+    line-height: var(--scc-line-height);
+    color: var(--scc-text-color);
+    opacity: 0.95;
+}
+
+.scc-privacy-link {
+    display: inline-block !important;
+    margin-left: 6px !important;
+    text-decoration: underline !important;
+    color: inherit !important;
+    opacity: 0.8 !important;
+    font-size: inherit !important;
+    transition: opacity 0.2s ease !important;
+}
+
+.scc-privacy-link:hover {
+    opacity: 1 !important;
+}
+
+/* Botões General Style */
+.scc-btn {
+    appearance: none;
+    border: var(--scc-btn-border);
+    border-radius: var(--scc-btn-radius);
+    font-size: var(--scc-btn-font-size);
+    font-weight: var(--scc-btn-weight);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: var(--scc-btn-padding);
+    width: 100%;
+    text-decoration: none;
+}
+
+.scc-btn-accept {
+    background-color: var(--scc-primary-color);
+    color: var(--scc-text-on-primary) !important;
+}
+
+.scc-btn-config {
+    background-color: var(--scc-secondary-color);
+    color: var(--scc-text-on-secondary) !important;
+}
+
+.scc-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scc-buttons {
+    display: flex;
+    gap: var(--scc-buttons-gap);
+    margin-top: 24px;
+}
+
+/* Modal Overlay */
+#scc-cookie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    padding: 20px;
+}
+
+#scc-cookie-modal.active {
+    display: flex !important;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Modal Content Container */
+.scc-modal-content {
+    background-color: var(--scc-modal-bg);
+    width: 100%;
+    max-width: 600px;
+    border-radius: var(--scc-modal-radius);
+    padding: 40px;
+    position: relative;
+    color: var(--scc-modal-text);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#scc-cookie-modal.active .scc-modal-content {
+    transform: scale(1);
+}
+
+/* Modal Header */
+.scc-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+}
+
+.scc-modal-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--scc-modal-title-color);
+    line-height: 1.2;
+}
+
+/* Close Button */
+.scc-close {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: none !important;
+    color: var(--scc-modal-text) !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: all 0.2s ease !important;
+    overflow: hidden !important;
+}
+
+.scc-close svg {
+    display: block !important;
+    width: 14px !important;
+    height: 14px !important;
+    color: currentColor !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.scc-close:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+    transform: rotate(90deg) !important;
+}
+
+/* Option Row */
+.scc-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.scc-option:last-of-type { border-bottom: none; }
+
+.scc-option-info {
+    flex: 1;
+    padding-right: 24px;
+}
+
+.scc-option-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--scc-option-title-color);
+}
+
+.scc-option-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--scc-modal-text);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* Switch Toggle */
+.scc-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 30px;
+}
+
+.scc-switch input { opacity: 0; width: 0; height: 0; }
+
+.scc-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #d1d5db;
+    transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 34px;
+}
+
+.scc-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px; bottom: 4px;
+    background-color: white;
+    transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:checked + .scc-slider {
+    background-color: var(--scc-primary-color);
+}
+
+input:checked + .scc-slider:before {
+    transform: translateX(24px);
+}
+
+input:disabled + .scc-slider {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Modal Footer */
+.scc-modal-footer {
+    display: flex;
+    gap: 16px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+    #scc-cookie-banner {
+        width: calc(100% - 32px);
+        right: 16px; left: 16px; bottom: 16px;
+        padding: 24px;
+    }
+
+    .scc-modal-content {
+        padding: 28px 20px;
+        border-radius: var(--scc-modal-radius);
+        height: auto;
+        max-height: 90vh;
+        margin: 0;
+    }
+
+    #scc-cookie-modal { padding: 16px; }
+
+    .scc-buttons, .scc-modal-footer {
+        flex-direction: column;
+    }
+
+    .scc-option {
+        flex-direction: row;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .scc-modal-header h2 { font-size: 1.4rem; }
+}
+
+/* Scrollbar Customization for Modal */
+.scc-modal-content::-webkit-scrollbar { width: 6px; }
+.scc-modal-content::-webkit-scrollbar-track { background: transparent; }
+.scc-modal-content::-webkit-scrollbar-thumb { 
+    background: rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+}
