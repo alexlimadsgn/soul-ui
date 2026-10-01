@@ -4,7 +4,7 @@
  * Description:       Rastreamento leve e independente de visualizações de página (Page Views) e tracking de eventos (data-track) com interface nativa do WordPress.
  * Version:           1.0.1
  * Author:            Alex Lima
- * License:           GPL v2 or later
+ * License:           MIT
  * Text Domain:       wp-analytics
  */
 

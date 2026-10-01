@@ -5,7 +5,7 @@
  * Version: 1.0.0
  * Author: Alex Lima
  * Text Domain: wp-maintenance-contacts
- * License: GPL2
+ * License: MIT
  */
 
 if (!defined('ABSPATH')) {

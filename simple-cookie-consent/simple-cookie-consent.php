@@ -4,7 +4,7 @@
  * Description: Plugin simples para gestão de consentimento de cookies com design premium.
  * Version: 3.0.0
  * Author: Alex Lima Dsgn
- * License: GPL2
+ * License: MIT
  */
 
 if (!defined('ABSPATH')) {

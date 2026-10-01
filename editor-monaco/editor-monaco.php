@@ -4,7 +4,7 @@
  * Description: Substitui o editor de temas e plugins padrão do WordPress por uma interface IDE moderna com Monaco Editor em menu dedicado.
  * Version: 2.1.0
  * Author: Alex Lima
- * License: GPL2
+ * License: MIT
  * Text Domain: editor-monaco
  */
 
