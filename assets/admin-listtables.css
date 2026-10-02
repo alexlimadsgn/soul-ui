@@ -748,7 +748,7 @@ body.wn-active .postbox .inside,
 body.wn-active #poststuff .postbox .inside,
 body.wn-active #poststuff .inside {
     margin: 0 !important;
-    padding: 16px !important;
+    padding: 12px !important;
 }
 
 /* Título do post: a área do permalink só ocupa espaço quando tem conteúdo */
