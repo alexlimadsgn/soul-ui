@@ -31,6 +31,7 @@ if (!defined('WP_ADMIN_UI_DIR')) {
     require_once WP_ADMIN_UI_DIR . 'includes/class-login.php';
     require_once WP_ADMIN_UI_DIR . 'includes/class-security.php';
     require_once WP_ADMIN_UI_DIR . 'includes/class-dashboard.php';
+    require_once WP_ADMIN_UI_DIR . 'includes/class-media-folders.php';
 
     // Módulos integrados adicionais (Cookie Consent, Modo de Manutenção, Editor Monaco e WP Analytics)
     require_once WP_ADMIN_UI_DIR . 'simple-cookie-consent/simple-cookie-consent.php';
@@ -75,6 +76,7 @@ if (!defined('WP_ADMIN_UI_DIR')) {
         WP_Admin_UI_Login::init();
         WP_Admin_UI_Dashboard::init();
         WP_Admin_UI_Security::init();
+        WP_Admin_UI_Media_Folders::init();
     });
 
     // Garantir que as tabelas de analytics existam na inicialização do painel administrativo

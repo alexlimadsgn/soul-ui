@@ -336,7 +336,7 @@ class WP_Admin_UI_Media_Folders
         $parent = isset($_POST['parent']) ? absint($_POST['parent']) : 0;
 
         // Impede mover uma pasta para dentro dela mesma ou de uma descendente.
-        if ($parent && ($parent === $id || in_array($parent, get_term_children($id, self::TAX), true))) {
+        if ($parent && ($parent === $id || in_array($parent, array_map('intval', (array) get_term_children($id, self::TAX)), true))) {
             wp_send_json_error(['message' => __('Não é possível mover uma pasta para dentro dela mesma.', 'soul-ui')], 400);
         }
 
