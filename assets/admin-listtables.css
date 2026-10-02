@@ -766,6 +766,10 @@ body.wn-active #titlediv #edit-slug-box:not(:has(*)) {
 
 /* ── Publish Metabox (#submitdiv / .submitbox) ──────────────────────────── */
 
+/* Mais específico que "#poststuff .postbox .inside" para não somar o padding
+   do .inside ao padding interno do .submitbox */
+body.wn-active #poststuff #submitdiv .inside,
+body.wn-active #poststuff .postbox .inside:has(> .submitbox),
 body.wn-active #submitdiv .inside,
 body.wn-active .submitbox {
     margin: 0 !important;
