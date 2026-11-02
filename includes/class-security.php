@@ -134,7 +134,9 @@ class WP_Admin_UI_Security {
      * Sanitiza qualquer redirecionamento originado pelo Personalizador ou que aponte para update.php
      */
     public static function sanitize_customizer_return_redirect(string $location, int $status): string {
-        if (strpos($location, 'update.php') !== false || strpos($location, 'action=upload-theme') !== false) {
+        // Só redireciona upload-theme sem pacote; o fluxo de substituição
+        // (update.php?action=upload-theme&package=…&overwrite=…) precisa seguir.
+        if (strpos($location, 'action=upload-theme') !== false && strpos($location, 'package=') === false) {
             return admin_url('themes.php');
         }
         return $location;
@@ -149,7 +151,8 @@ class WP_Admin_UI_Security {
         if ('update.php' === $pagenow) {
             $action = isset($_GET['action']) ? sanitize_key($_GET['action']) : '';
             // Se for tentativa de upload sem envio via POST multipart
-            if ('upload-theme' === $action && empty($_FILES) && empty($_POST)) {
+            // O botão "Substituir pelo carregado" usa GET com package + overwrite: não interceptar.
+            if ('upload-theme' === $action && empty($_FILES) && empty($_POST) && empty($_GET['package'])) {
                 wp_safe_redirect(admin_url('themes.php'));
                 exit;
             }
