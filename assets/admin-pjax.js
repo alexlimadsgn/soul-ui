@@ -90,7 +90,12 @@
             'options-permalink.php',
             'privacy.php',
             'erase-personal-data.php',
-            'site-health.php'
+            'site-health.php',
+            // Telas de usuário: user-profile.js (senha sugerida, força da senha)
+            // só inicializa num carregamento completo da página
+            'user-new.php',
+            'user-edit.php',
+            'profile.php'
         ];
 
         for (var i = 0; i < excludedPaths.length; i++) {
