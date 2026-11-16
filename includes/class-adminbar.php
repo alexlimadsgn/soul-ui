@@ -8,6 +8,7 @@ class WP_Admin_UI_Adminbar {
         add_action( 'in_admin_header', [ __CLASS__, 'render' ], 10 );
         add_filter( 'show_admin_bar', '__return_false' );
         add_action( 'wp_ajax_wn_set_admin_color', [ __CLASS__, 'ajax_set_admin_color' ] );
+        add_action( 'wp_ajax_wn_save_custom_colors', [ __CLASS__, 'ajax_save_custom_colors' ] );
         add_action( 'wp_ajax_wn_set_posts_per_page', [ __CLASS__, 'ajax_set_posts_per_page' ] );
     }
 
@@ -71,6 +72,39 @@ class WP_Admin_UI_Adminbar {
             'message' => 'Tema atualizado com sucesso.',
         ] );
 
+    }
+
+    /**
+     * Cores do esquema personalizado do usuário atual (menu lateral e destaque).
+     */
+    public static function get_custom_colors( int $user_id = 0 ): array {
+        $saved = get_user_meta( $user_id ?: get_current_user_id(), 'wn_custom_colors', true );
+        $saved = is_array( $saved ) ? $saved : [];
+        return [
+            'bg'     => sanitize_hex_color( $saved['bg'] ?? '' ) ?: '#1e1e1e',
+            'accent' => sanitize_hex_color( $saved['accent'] ?? '' ) ?: '#3858e9',
+        ];
+    }
+
+    public static function ajax_save_custom_colors(): void {
+        check_ajax_referer( 'wp_admin_ui', 'nonce' );
+
+        if ( ! current_user_can( 'read' ) ) {
+            wp_send_json_error( [ 'message' => 'Sem permissão.' ] );
+        }
+
+        $bg     = sanitize_hex_color( wp_unslash( $_POST['bg'] ?? '' ) );
+        $accent = sanitize_hex_color( wp_unslash( $_POST['accent'] ?? '' ) );
+        if ( ! $bg || ! $accent ) {
+            wp_send_json_error( [ 'message' => 'Cores inválidas.' ] );
+        }
+
+        $user_id = get_current_user_id();
+        update_user_meta( $user_id, 'wn_custom_colors', [ 'bg' => $bg, 'accent' => $accent ] );
+        update_user_option( $user_id, 'admin_color', 'wn-custom', true );
+        update_user_meta( $user_id, 'admin_color', 'wn-custom' );
+
+        wp_send_json_success( [ 'scheme' => 'wn-custom' ] );
     }
 
     public static function render(): void {
@@ -156,6 +190,20 @@ class WP_Admin_UI_Adminbar {
                             <?php echo self::icon_palette(); ?>
                             <span class="wn-dropdown-theme-title">Cor do Tema</span>
                         </div>
+                        <?php $custom = self::get_custom_colors(); ?>
+                        <div class="wn-theme-custom <?php echo 'wn-custom' === $user_scheme ? 'is-active' : ''; ?>">
+                            <span class="wn-theme-custom-title">Personalizado</span>
+                            <label class="wn-theme-custom-field">
+                                <input type="color" name="wn_custom_bg" value="<?php echo esc_attr( $custom['bg'] ); ?>">
+                                <span>Menu lateral</span>
+                            </label>
+                            <label class="wn-theme-custom-field">
+                                <input type="color" name="wn_custom_accent" value="<?php echo esc_attr( $custom['accent'] ); ?>">
+                                <span>Destaque</span>
+                            </label>
+                            <button type="button" class="button button-primary wn-theme-custom-apply">Aplicar</button>
+                        </div>
+
                         <div class="wn-theme-palette-grid">
                             <?php foreach ( $theme_schemes as $scheme_key => $scheme_info ) : 
                                 $is_active = ( $user_scheme === $scheme_key );
