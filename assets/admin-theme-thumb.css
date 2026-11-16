@@ -61,3 +61,8 @@
 .wn-tt-toast.is-error {
     background: #d63638;
 }
+
+/* Modal de detalhes do tema */
+.theme-overlay .theme-screenshots {
+    position: relative;
+}
