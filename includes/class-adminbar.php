@@ -190,6 +190,20 @@ class WP_Admin_UI_Adminbar {
                             <?php echo self::icon_palette(); ?>
                             <span class="wn-dropdown-theme-title">Cor do Tema</span>
                         </div>
+                        <?php $custom = self::get_custom_colors(); ?>
+                        <div class="wn-theme-custom <?php echo 'wn-custom' === $user_scheme ? 'is-active' : ''; ?>">
+                            <span class="wn-theme-custom-title">Personalizado</span>
+                            <label class="wn-theme-custom-field">
+                                <input type="color" name="wn_custom_bg" value="<?php echo esc_attr( $custom['bg'] ); ?>">
+                                <span>Menu lateral</span>
+                            </label>
+                            <label class="wn-theme-custom-field">
+                                <input type="color" name="wn_custom_accent" value="<?php echo esc_attr( $custom['accent'] ); ?>">
+                                <span>Destaque</span>
+                            </label>
+                            <button type="button" class="button button-primary wn-theme-custom-apply">Aplicar</button>
+                        </div>
+
                         <div class="wn-theme-palette-grid">
                             <?php foreach ( $theme_schemes as $scheme_key => $scheme_info ) : 
                                 $is_active = ( $user_scheme === $scheme_key );
@@ -203,20 +217,6 @@ class WP_Admin_UI_Adminbar {
                                     <span class="wn-palette-label"><?php echo esc_html( $scheme_info['name'] ); ?></span>
                                 </button>
                             <?php endforeach; ?>
-                        </div>
-
-                        <?php $custom = self::get_custom_colors(); ?>
-                        <div class="wn-theme-custom <?php echo 'wn-custom' === $user_scheme ? 'is-active' : ''; ?>">
-                            <span class="wn-theme-custom-title">Personalizado</span>
-                            <label class="wn-theme-custom-field">
-                                <input type="color" name="wn_custom_bg" value="<?php echo esc_attr( $custom['bg'] ); ?>">
-                                <span>Menu lateral</span>
-                            </label>
-                            <label class="wn-theme-custom-field">
-                                <input type="color" name="wn_custom_accent" value="<?php echo esc_attr( $custom['accent'] ); ?>">
-                                <span>Destaque</span>
-                            </label>
-                            <button type="button" class="button button-primary wn-theme-custom-apply">Aplicar</button>
                         </div>
                     </div>
                 </div>
