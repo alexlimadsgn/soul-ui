@@ -295,7 +295,16 @@ class WP_Admin_UI_Assets {
             ],
         ];
 
-        if ( isset( $preset_schemes[ $user_scheme ] ) ) {
+        if ( 'wn-custom' === $user_scheme && class_exists( 'WP_Admin_UI_Adminbar' ) ) {
+            // Esquema personalizado: hover e textos derivados das duas cores escolhidas.
+            $custom  = WP_Admin_UI_Adminbar::get_custom_colors();
+            $bg      = $custom['bg'];
+            $accent  = $custom['accent'];
+            $dark    = self::is_dark( $bg );
+            $hover   = self::adjust_brightness( $bg, $dark ? 8 : -6 );
+            $text    = $dark ? '#c3c4c7' : '#50575e';
+            $text_hi = $dark ? '#ffffff' : '#1d2327';
+        } elseif ( isset( $preset_schemes[ $user_scheme ] ) ) {
             $preset  = $preset_schemes[ $user_scheme ];
             $bg      = $preset['bg'];
             $hover   = $preset['hover'];

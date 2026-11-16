@@ -255,6 +255,28 @@
             });
         }
 
+        var applyCustom = themeGroup.querySelector('.wn-theme-custom-apply');
+        if (applyCustom) {
+            applyCustom.addEventListener('click', function (e) {
+                e.preventDefault();
+                applyCustom.disabled = true;
+
+                var formData = new FormData();
+                formData.append('action', 'wn_save_custom_colors');
+                formData.append('bg', themeGroup.querySelector('[name="wn_custom_bg"]').value);
+                formData.append('accent', themeGroup.querySelector('[name="wn_custom_accent"]').value);
+                formData.append('nonce', themeGroup.getAttribute('data-nonce') || (cfg && cfg.nonce ? cfg.nonce : ''));
+
+                fetch(themeGroup.getAttribute('data-ajax-url') || (cfg && cfg.ajaxUrl ? cfg.ajaxUrl : 'admin-ajax.php'), {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                })
+                .then(function () { window.location.reload(); })
+                .catch(function () { applyCustom.disabled = false; });
+            });
+        }
+
         var buttons = themeGroup.querySelectorAll('.wn-theme-palette-btn');
         buttons.forEach(function (btn) {
             btn.addEventListener('click', function (e) {
