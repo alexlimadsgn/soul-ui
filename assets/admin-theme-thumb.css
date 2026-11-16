@@ -1,0 +1,63 @@
+/* ── Soul UI — Thumb dos Temas ─────────────────────────────────────────── */
+
+.theme-browser .theme .theme-screenshot {
+    position: relative;
+}
+
+.wn-tt-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    color: #1d2327;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease;
+}
+
+.wn-tt-btn:hover,
+.wn-tt-btn:focus-visible {
+    background: var(--wn-accent, #3858e9);
+    border-color: transparent;
+    color: var(--wn-text-act, #ffffff);
+}
+
+.wn-tt-btn.is-loading {
+    opacity: 0.6;
+    cursor: progress;
+}
+
+.wn-tt-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 100000;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background: #1d2327;
+    color: #ffffff;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.wn-tt-toast.is-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wn-tt-toast.is-error {
+    background: #d63638;
+}
