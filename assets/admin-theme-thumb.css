@@ -4,11 +4,16 @@
     position: relative;
 }
 
-.wn-tt-btn {
+.wn-tt-actions {
     position: absolute;
     top: 10px;
     right: 10px;
     z-index: 3;
+    display: flex;
+    gap: 6px;
+}
+
+.wn-tt-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
