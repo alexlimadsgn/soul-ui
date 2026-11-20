@@ -1448,6 +1448,65 @@ body.wn-active .wp-filter .search-form .wp-filter-search:focus {
     }
 }
 
+/* ── Tablenav no celular: controles empilhados, sem altura fixa ──────────── */
+@media screen and (max-width: 782px) {
+    body.wn-active .tablenav.top,
+    body.wn-active .tablenav.bottom {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px !important;
+        height: auto !important;
+    }
+
+    body.wn-active .tablenav .alignleft,
+    body.wn-active .tablenav .actions,
+    body.wn-active .tablenav .bulkactions {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        float: none !important;
+        width: 100% !important;
+        height: auto !important;
+        gap: 8px !important;
+    }
+
+    body.wn-active .tablenav select {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+    }
+
+    body.wn-active .tablenav .button {
+        flex: 0 0 auto !important;
+    }
+
+    /* Rótulos só para leitores de tela continuam ocultos */
+    body.wn-active .tablenav .screen-reader-text {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+
+    body.wn-active .tablenav .tablenav-pages {
+        float: none !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+    }
+
+    body.wn-active .tablenav br.clear {
+        display: none !important;
+    }
+}
+
 /* ── Theme Feature Filter Drawer (Sidebar Drawer à Direita) ───────────────── */
 
 /* Overlay de fundo quando o drawer estiver aberto */
