@@ -1450,6 +1450,34 @@ body.wn-active .wp-filter .search-form .wp-filter-search:focus {
 
 /* ── Tablenav no celular: controles empilhados, sem altura fixa ──────────── */
 @media screen and (max-width: 782px) {
+    /* Busca: linha própria, campo ocupando a largura */
+    body.wn-active p.search-box,
+    body.wn-active .search-box {
+        float: none !important;
+        position: static !important;
+        display: flex !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 0 12px !important;
+    }
+
+    body.wn-active p.search-box input[type="search"],
+    body.wn-active .search-box input[type="search"],
+    body.wn-active p.search-box input[type="text"],
+    body.wn-active .search-box input[type="text"] {
+        flex: 1 1 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    body.wn-active p.search-box input[type="submit"],
+    body.wn-active .search-box input[type="submit"] {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
     body.wn-active .tablenav.top,
     body.wn-active .tablenav.bottom {
         display: flex !important;
@@ -1459,29 +1487,38 @@ body.wn-active .wp-filter .search-form .wp-filter-search:focus {
         height: auto !important;
     }
 
+    /* Cada grupo (ações em lote, filtros) numa linha */
     body.wn-active .tablenav .alignleft,
     body.wn-active .tablenav .actions,
     body.wn-active .tablenav .bulkactions {
         display: flex !important;
+        flex: 1 1 100% !important;
         flex-wrap: wrap !important;
+        align-items: center !important;
         float: none !important;
         width: 100% !important;
         height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
         gap: 8px !important;
     }
 
-    body.wn-active .tablenav select {
-        flex: 1 1 0 !important;
+    body.wn-active .tablenav .actions select {
+        flex: 1 1 120px !important;
+        width: auto !important;
         min-width: 0 !important;
         max-width: none !important;
+        margin: 0 !important;
     }
 
-    body.wn-active .tablenav .button {
+    body.wn-active .tablenav .actions .button {
         flex: 0 0 auto !important;
+        margin: 0 !important;
     }
 
     /* Rótulos só para leitores de tela continuam ocultos */
-    body.wn-active .tablenav .screen-reader-text {
+    body.wn-active .tablenav .screen-reader-text,
+    body.wn-active .search-box .screen-reader-text {
         position: absolute !important;
         width: 1px !important;
         height: 1px !important;
@@ -1493,13 +1530,26 @@ body.wn-active .wp-filter .search-form .wp-filter-search:focus {
         border: 0 !important;
     }
 
+    /* Linhas por página + contagem/paginação na mesma linha */
+    body.wn-active .wn-per-page-container {
+        float: none !important;
+        margin: 0 !important;
+        order: 10 !important;
+    }
+
     body.wn-active .tablenav .tablenav-pages {
         float: none !important;
-        width: 100% !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
         height: auto !important;
         margin: 0 !important;
         flex-wrap: wrap !important;
-        justify-content: space-between !important;
+        justify-content: flex-end !important;
+        order: 11 !important;
+    }
+
+    body.wn-active .tablenav .tablenav-pages .displaying-num {
+        white-space: nowrap !important;
     }
 
     body.wn-active .tablenav br.clear {
